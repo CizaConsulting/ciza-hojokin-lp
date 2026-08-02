@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+}
+const { title, description, canonical } = Astro.props;
+const siteTitle = 'CIZA 補助金・支援制度ナビ';
+const pageTitle = title === siteTitle ? title : `${title}｜${siteTitle}`;
+---
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/">CIZA 支援制度ナビ<small>株式会社シザコンサルティング</small></a>
+        <nav class="nav" aria-label="メインナビゲーション">
+          <a href="/equipment-investment/">設備投資</a>
+          <a href="/new-business/">新規事業</a>
+          <a href="/consultation/" class="button small">30分無料Web診断</a>
+        </nav>
+      </div>
+    </header>
+    <main><slot /></main>
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>株式会社シザコンサルティング<br />補助金・財務・資金調達・経営管理を横断して支援</div>
+        <div>© CIZA Consulting Inc.</div>
+      </div>
+    </footer>
+  </body>
+</html>
