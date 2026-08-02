@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const formEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || '';
+---
+<BaseLayout title="30分無料Web診断" description="設備投資・新規事業に関係する補助金、税制優遇、融資などの候補と確認事項を30分で整理します。">
+  <div class="page-hero">
+    <div class="container prose">
+      <p class="eyebrow">設備投資・新規事業の支援制度</p>
+      <h1>30分無料Web診断</h1>
+      <p class="lead">計画内容をお伺いし、利用可能性のある制度、補助金以外の選択肢、着手前の注意点、次に準備すべきことを整理します。</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container grid-2">
+      <div>
+        <h2>この診断で整理すること</h2>
+        <ul class="checklist">
+          <li>候補となる補助金・支援制度</li>
+          <li>税制優遇、認定制度、融資の可能性</li>
+          <li>発注・契約・申請時期の注意</li>
+          <li>不足している情報・資料</li>
+          <li>次に取るべき行動</li>
+        </ul>
+        <div class="notice" style="margin-top:24px">
+          本診断は制度利用、採択、税制適用、融資実行を保証するものではありません。正式な判断には、最新の公募要領や個別資料の確認が必要です。
+        </div>
+      </div>
+      <div class="form-card">
+        <h2>お申込み</h2>
+        <p>内容を確認後、担当者からメールで日程候補をご連絡します。</p>
+        {!formEndpoint && <p class="notice">フォーム送信先は公開前に設定します。現在はプレビュー段階です。</p>}
+        <form action={formEndpoint || '#'} method="POST" id="consultation-form">
+          <input type="hidden" name="form_type" value="30分無料Web診断" />
+          <input type="hidden" name="source_page" value="consultation" />
+          <div class="form-grid">
+            <div class="field"><label for="company">会社名<span class="required">必須</span></label><input id="company" name="company" required /></div>
+            <div class="field"><label for="name">氏名・役職<span class="required">必須</span></label><input id="name" name="name" required /></div>
+            <div class="field full"><label for="email">メールアドレス<span class="required">必須</span></label><input id="email" name="email" type="email" required /></div>
+            <div class="field"><label for="industry">業種<span class="required">必須</span></label><input id="industry" name="industry" required /></div>
+            <div class="field"><label for="sales">売上規模<span class="required">必須</span></label><select id="sales" name="sales" required><option value="">選択してください</option><option>3,000万円未満</option><option>3,000万円～1億円</option><option>1億～3億円</option><option>3億～10億円</option><option>10億～50億円</option><option>50億円以上</option><option>創業前・不明</option></select></div>
+            <div class="field full"><label for="plan">検討していること<span class="required">必須</span></label><select id="plan" name="plan" required><option value="">選択してください</option><option>設備・機械の購入</option><option>工場・拠点の新設、増設</option><option>店舗の新設、改装</option><option>新規事業、新商品、新サービス</option><option>省力化、自動化</option><option>IT・システム導入</option><option>販路開拓、広告、展示会</option><option>M&A、事業承継</option><option>その他</option></select></div>
+            <div class="field"><label for="investment">投資予定額<span class="required">必須</span></label><select id="investment" name="investment" required><option value="">選択してください</option><option>100万円未満</option><option>100万～500万円</option><option>500万～1,000万円</option><option>1,000万～3,000万円</option><option>3,000万～1億円</option><option>1億円以上</option><option>未定</option></select></div>
+            <div class="field"><label for="timing">実施予定時期<span class="required">必須</span></label><select id="timing" name="timing" required><option value="">選択してください</option><option>3か月以内</option><option>半年以内</option><option>1年以内</option><option>2年以内</option><option>2年以上先</option><option>未定</option></select></div>
+            <div class="field full"><label for="problem">現在、最も困っていること<span class="required">必須</span></label><textarea id="problem" name="problem" required></textarea></div>
+            <div class="field full"><label for="goal">30分で確認したいこと<span class="required">必須</span></label><textarea id="goal" name="goal" required></textarea></div>
+            <div class="field full"><label for="research">現在の相談先・調べ方</label><input id="research" name="research" placeholder="例：顧問税理士、銀行、Google検索、ChatGPT" /></div>
+          </div>
+          <p class="form-note">送信いただいた情報は、本診断への対応および関連するご連絡のために利用します。</p>
+          <button class="button" type="submit" disabled={!formEndpoint}>無料Web診断を申し込む</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
