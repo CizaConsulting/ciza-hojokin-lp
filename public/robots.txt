@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hojokin.ciza.co.jp/sitemap-index.xml
