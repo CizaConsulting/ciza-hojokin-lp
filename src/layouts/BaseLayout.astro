@@ -4,10 +4,65 @@ interface Props {
   title: string;
   description: string;
   canonical?: string;
+  noindex?: boolean;
 }
-const { title, description, canonical } = Astro.props;
+const { title, description, canonical, noindex = false } = Astro.props;
 const siteTitle = 'CIZA 補助金・支援制度ナビ';
 const pageTitle = title === siteTitle ? title : `${title}｜${siteTitle}`;
+const siteUrl = new URL('/', Astro.site ?? Astro.url).href;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
+const organizationId = `${siteUrl}#organization`;
+const websiteId = `${siteUrl}#website`;
+const personUrl = new URL('/author/takuma-kawahara/', siteUrl).href;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: '株式会社シザコンサルティング',
+      url: 'https://www.ciza.co.jp/',
+      email: 'info@ciza.co.jp',
+      foundingDate: '2012',
+      description: '補助金、財務、融資、事業計画、経営管理を横断して中小企業の投資と成長を支援するコンサルティング会社です。',
+      address: {
+        '@type': 'PostalAddress',
+        postalCode: '532-0011',
+        addressRegion: '大阪府',
+        addressLocality: '大阪市淀川区',
+        streetAddress: '西中島1丁目9番20号 新中島ビル9階',
+        addressCountry: 'JP'
+      }
+    },
+    {
+      '@type': 'Person',
+      '@id': `${personUrl}#person`,
+      name: '川原 拓馬',
+      jobTitle: '代表取締役',
+      url: personUrl,
+      worksFor: { '@id': organizationId },
+      knowsAbout: ['補助金', '財務', '資金調達', '事業計画', '経営管理', '中小企業支援']
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: siteUrl,
+      name: siteTitle,
+      publisher: { '@id': organizationId },
+      inLanguage: 'ja-JP'
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: pageTitle,
+      description,
+      isPartOf: { '@id': websiteId },
+      about: { '@id': organizationId },
+      inLanguage: 'ja-JP'
+    }
+  ]
+};
 ---
 <!doctype html>
 <html lang="ja">
@@ -16,10 +71,16 @@ const pageTitle = title === siteTitle ? title : `${title}｜${siteTitle}`;
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={siteTitle} />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary" />
+    <link rel="canonical" href={canonicalUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <title>{pageTitle}</title>
   </head>
   <body>
@@ -29,6 +90,7 @@ const pageTitle = title === siteTitle ? title : `${title}｜${siteTitle}`;
         <nav class="nav" aria-label="メインナビゲーション">
           <a href="/equipment-investment/">設備投資</a>
           <a href="/new-business/">新規事業</a>
+          <a href="/about/">運営会社</a>
           <a href="/consultation/" class="button small">30分無料Web診断</a>
         </nav>
       </div>
@@ -40,6 +102,10 @@ const pageTitle = title === siteTitle ? title : `${title}｜${siteTitle}`;
           <strong>株式会社シザコンサルティング</strong><br />
           補助金・財務・資金調達・経営管理を横断して支援
           <div class="footer-links">
+            <a href="/about/">運営会社</a>
+            <a href="/author/takuma-kawahara/">代表者・著者</a>
+            <a href="/editorial-policy/">編集方針</a>
+            <a href="/privacy/">プライバシーポリシー</a>
             <a href="/consultation/">30分無料Web診断</a>
             <a href="mailto:info@ciza.co.jp">info@ciza.co.jp</a>
           </div>
