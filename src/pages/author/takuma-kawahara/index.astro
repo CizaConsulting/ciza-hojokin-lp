@@ -1,31 +1,111 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+const pageUrl = new URL('/author/takuma-kawahara/', Astro.site ?? Astro.url).href;
+const personId = `${pageUrl}#person`;
+const profileSchema = {
+  '@type': 'ProfilePage',
+  '@id': `${pageUrl}#profilepage`,
+  url: pageUrl,
+  name: '川原 拓馬｜代表者・著者プロフィール',
+  mainEntity: {
+    '@type': 'Person',
+    '@id': personId,
+    name: '川原 拓馬',
+    jobTitle: '株式会社シザコンサルティング 代表取締役・経営コンサルタント',
+    image: new URL('/images/takuma-kawahara.jpg', Astro.site ?? Astro.url).href,
+    alumniOf: { '@type': 'CollegeOrUniversity', name: '神戸大学経営学部' },
+    sameAs: [
+      'https://www.youtube.com/@takuma_kawahara',
+      'https://www.ciza.co.jp/greeting.html',
+      'https://keieikanri.ciza.co.jp/about'
+    ]
+  }
+};
 ---
-<BaseLayout title="川原 拓馬｜代表者・著者プロフィール" description="株式会社シザコンサルティング代表取締役、川原拓馬の経歴、専門領域、補助金・財務支援における考え方をご紹介します。">
+<BaseLayout title="川原 拓馬｜代表者・著者プロフィール" description="株式会社シザコンサルティング代表取締役、川原拓馬の経歴、補助金審査経験、採択支援実績、専門領域をご紹介します。" schema={profileSchema}>
   <div class="page-hero">
-    <div class="container prose">
-      <p class="eyebrow">代表者・著者プロフィール</p>
-      <h1>川原 拓馬</h1>
-      <p class="lead">株式会社シザコンサルティング 代表取締役。補助金、資金調達、事業計画、経営改善、管理会計、CFO支援を通じて、中小企業の投資と経営判断を支援しています。</p>
+    <div class="container profile-hero">
+      <div>
+        <p class="eyebrow">代表者・著者プロフィール</p>
+        <h1>川原 拓馬</h1>
+        <p class="lead">株式会社シザコンサルティング 代表取締役。補助金、資金調達、事業計画、経営改善、管理会計、CFO支援を通じて、中小企業の投資と経営判断を支援しています。</p>
+        <div class="profile-links">
+          <a class="text-link" href="https://www.youtube.com/@takuma_kawahara" target="_blank" rel="noopener noreferrer">YouTube公式チャンネル →</a>
+          <a class="text-link" href="https://www.ciza.co.jp/" target="_blank" rel="noopener noreferrer">CIZA公式サイト →</a>
+        </div>
+      </div>
+      <figure class="profile-photo">
+        <img src="/images/takuma-kawahara.jpg" alt="ホワイトボードを使って説明する株式会社シザコンサルティング代表取締役の川原拓馬" width="480" height="320" loading="eager" />
+      </figure>
     </div>
   </div>
 
   <section class="section">
     <div class="container grid-2 align-start">
       <div class="profile-summary">
+        <p class="eyebrow">補助金に関する経験</p>
+        <h2>審査と申請支援の両面を経験</h2>
+        <ul class="checklist">
+          <li>ものづくり補助金の審査員を数年間担当</li>
+          <li>補助金採択支援 累計300件超</li>
+          <li>設備投資、新規事業、販路開拓、IT投資など幅広い案件を支援</li>
+          <li>補助金だけでなく、投資採算・融資・資金繰りまで確認</li>
+        </ul>
+        <p class="small-note">実績件数は2026年8月時点の社内集計です。個別案件の採択を保証するものではありません。</p>
+      </div>
+      <div>
+        <p class="eyebrow">主な採択支援実績</p>
+        <h2>幅広い制度に対応</h2>
+        <div class="tag-list" aria-label="主な採択支援制度">
+          <span>中小企業成長加速化補助金</span>
+          <span>事業再構築補助金</span>
+          <span>中小企業省力化投資補助金</span>
+          <span>事業承継・M&A補助金</span>
+          <span>ものづくり補助金</span>
+          <span>小規模事業者持続化補助金</span>
+          <span>IT導入補助金</span>
+          <span>その他の国・自治体の補助金</span>
+        </div>
+        <p>制度ごとに要件や審査観点は異なります。特定制度への当て込みから始めず、企業が実現したい投資や事業計画を確認したうえで、利用可能性のある制度を整理します。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container prose">
+      <p class="eyebrow">経歴</p>
+      <h2>銀行・コンサルティングファーム・経営支援会社での実務経験</h2>
+      <div class="career-list">
+        <div class="career-item"><strong>神戸大学経営学部卒業</strong><p>経営・会計・企業分析の基礎を学ぶ。</p></div>
+        <div class="career-item"><strong>商工中金</strong><p>約100社を担当し、業況の厳しい中小企業を中心に、30社以上の改善計画策定や資金繰り改善を支援。</p></div>
+        <div class="career-item"><strong>株式会社アットストリーム</strong><p>大企業・中堅企業の事業計画、事業再生、経営管理改革、原価管理改革などのプロジェクトに参画。</p></div>
+        <div class="career-item"><strong>2012年 株式会社シザコンサルティング設立</strong><p>中小・中堅企業の資金調達、補助金、事業計画、経営改善、管理会計、CFO支援を実施。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-2 align-start">
+      <div>
         <p class="eyebrow">専門領域</p>
         <ul class="checklist">
           <li>設備投資・新規事業に関する補助金支援</li>
           <li>融資・資金調達・資金繰り</li>
-          <li>事業計画・経営改善</li>
+          <li>事業計画・経営改善・事業再生</li>
           <li>管理会計・KPI・経営管理</li>
           <li>CFO支援・経営判断の仕組みづくり</li>
+          <li>M&A財務デューデリジェンス・PMI</li>
         </ul>
       </div>
       <div>
-        <h2>経歴</h2>
-        <p>銀行およびコンサルティング会社での経験を経て、2012年に株式会社シザコンサルティングを創業。コンサルティング実務に17年以上携わり、中小企業の資金調達、補助金、再生・経営改善、管理会計、CFO支援などを行ってきました。</p>
-        <p>補助金申請支援の採択実績は累計300件超です。件数は2026年8月時点の社内集計であり、個別案件の採択を保証するものではありません。</p>
+        <p class="eyebrow">著書・講師等</p>
+        <ul class="checklist">
+          <li>『金融機関のための取引先企業の実態把握強化法』共著</li>
+          <li>『小売業の収益構造を見極め、“儲かる”企業に改革するための着眼点』共著</li>
+          <li>商工会議所等でのセミナー講師</li>
+          <li>甲南大学 非常勤講師「経営コンサルティング論」</li>
+          <li>大阪商工会議所エキスパートバンク登録専門員等の経験</li>
+        </ul>
       </div>
     </div>
   </section>
