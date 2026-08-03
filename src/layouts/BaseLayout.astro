@@ -5,8 +5,9 @@ interface Props {
   description: string;
   canonical?: string;
   noindex?: boolean;
+  schema?: Record<string, unknown> | Record<string, unknown>[];
 }
-const { title, description, canonical, noindex = false } = Astro.props;
+const { title, description, canonical, noindex = false, schema } = Astro.props;
 const siteTitle = 'CIZA 補助金・支援制度ナビ';
 const pageTitle = title === siteTitle ? title : `${title}｜${siteTitle}`;
 const siteUrl = new URL('/', Astro.site ?? Astro.url).href;
@@ -14,6 +15,7 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
 const organizationId = `${siteUrl}#organization`;
 const websiteId = `${siteUrl}#website`;
 const personUrl = new URL('/author/takuma-kawahara/', siteUrl).href;
+const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -60,7 +62,8 @@ const structuredData = {
       isPartOf: { '@id': websiteId },
       about: { '@id': organizationId },
       inLanguage: 'ja-JP'
-    }
+    },
+    ...extraSchema
   ]
 };
 ---
