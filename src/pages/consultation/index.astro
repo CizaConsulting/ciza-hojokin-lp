@@ -32,6 +32,13 @@ const formEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || '';
           <li>補助金だけでなく、融資や資金繰りも含めて考えたい</li>
         </ul>
 
+        <div class="profile-summary" style="margin-top:28px">
+          <p class="eyebrow">対応・運営</p>
+          <h3>株式会社シザコンサルティング</h3>
+          <p>代表取締役 川原拓馬。補助金採択支援累計300件超。補助金、財務、資金調達、事業計画、経営管理を横断して確認します。</p>
+          <p><a class="text-link" href="/about/">会社・支援体制を見る →</a></p>
+        </div>
+
         <div class="notice" style="margin-top:24px">
           本診断は制度利用、採択、税制適用、融資実行を保証するものではありません。正式な判断には、最新の公募要領や個別資料の確認が必要です。
         </div>
@@ -56,7 +63,7 @@ const formEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || '';
             <div class="field full"><label for="goal">30分で確認したいこと<span class="required">必須</span></label><textarea id="goal" name="goal" required></textarea></div>
             <div class="field full"><label for="research">現在の相談先・調べ方</label><input id="research" name="research" placeholder="例：顧問税理士、銀行、Google検索、ChatGPT" /></div>
           </div>
-          <p class="form-note">送信いただいた情報は、本診断への対応および関連するご連絡のために利用します。</p>
+          <p class="form-note">送信いただいた情報は、本診断への対応および関連するご連絡のために利用します。お申込みにより、<a class="text-link" href="/privacy/">プライバシーポリシー</a>に同意したものとします。</p>
           <button class="button" type="submit" disabled={!formEndpoint}>無料Web診断を申し込む</button>
         </form>
       </div>
