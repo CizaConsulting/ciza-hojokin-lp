@@ -36,7 +36,14 @@ const pageTitle = title === siteTitle ? title : `${title}｜${siteTitle}`;
     <main><slot /></main>
     <footer class="site-footer">
       <div class="container footer-inner">
-        <div>株式会社シザコンサルティング<br />補助金・財務・資金調達・経営管理を横断して支援</div>
+        <div>
+          <strong>株式会社シザコンサルティング</strong><br />
+          補助金・財務・資金調達・経営管理を横断して支援
+          <div class="footer-links">
+            <a href="/consultation/">30分無料Web診断</a>
+            <a href="mailto:info@ciza.co.jp">info@ciza.co.jp</a>
+          </div>
+        </div>
         <div>© CIZA Consulting Inc.</div>
       </div>
     </footer>
