@@ -7,28 +7,38 @@ const formEndpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || '';
     <div class="container prose">
       <p class="eyebrow">設備投資・新規事業の支援制度</p>
       <h1>30分無料Web診断</h1>
-      <p class="lead">計画内容をお伺いし、利用可能性のある制度、補助金以外の選択肢、着手前の注意点、次に準備すべきことを整理します。</p>
+      <p class="lead">計画内容をお伺いし、使える可能性のある制度、発注前の注意点、補助金以外の選択肢、次に準備すべきことを整理します。</p>
     </div>
   </div>
 
   <section class="section">
     <div class="container grid-2">
       <div>
-        <h2>この診断で整理すること</h2>
+        <h2>30分で確認すること</h2>
         <ul class="checklist">
           <li>候補となる補助金・支援制度</li>
+          <li>発注・契約してよい時期</li>
           <li>税制優遇、認定制度、融資の可能性</li>
-          <li>発注・契約・申請時期の注意</li>
-          <li>不足している情報・資料</li>
-          <li>次に取るべき行動</li>
+          <li>補助金入金までの資金面の注意</li>
+          <li>不足している情報・資料と次の行動</li>
         </ul>
+
+        <h2>このような企業に向いています</h2>
+        <ul class="checklist">
+          <li>設備・機械の購入を予定している</li>
+          <li>新商品、新サービス、新店舗を検討している</li>
+          <li>省力化・自動化を進めたい</li>
+          <li>制度名は分からないが、使える支援策を知りたい</li>
+          <li>補助金だけでなく、融資や資金繰りも含めて考えたい</li>
+        </ul>
+
         <div class="notice" style="margin-top:24px">
           本診断は制度利用、採択、税制適用、融資実行を保証するものではありません。正式な判断には、最新の公募要領や個別資料の確認が必要です。
         </div>
       </div>
       <div class="form-card">
         <h2>お申込み</h2>
-        <p>内容を確認後、担当者からメールで日程候補をご連絡します。</p>
+        <p>内容を確認後、担当者からメールで日程候補をご連絡します。無料診断後に契約を求めるものではありません。</p>
         {!formEndpoint && <p class="notice">フォーム送信先は公開前に設定します。現在はプレビュー段階です。</p>}
         <form action={formEndpoint || '#'} method="POST" id="consultation-form">
           <input type="hidden" name="form_type" value="30分無料Web診断" />
