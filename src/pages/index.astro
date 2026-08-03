@@ -28,7 +28,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="proof-strip" aria-label="CIZAの支援実績">
     <div class="container proof-grid">
-      <div class="proof-item"><strong>300件超</strong><span>補助金採択支援の累計実績</span></div>
+      <div class="proof-item"><strong>採択支援300件超</strong><span>2026年8月時点の社内集計</span></div>
       <div class="proof-item"><strong>財務まで横断</strong><span>投資採算・融資・資金繰りも確認</span></div>
       <div class="proof-item"><strong>実行まで伴走</strong><span>申請書だけで終わらない支援</span></div>
     </div>
@@ -74,6 +74,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="section">
     <div class="container">
       <div class="section-head">
+        <p class="eyebrow">誰が、何を根拠に発信しているか</p>
+        <h2>専門性と情報の確認方法を明示します</h2>
+      </div>
+      <div class="trust-grid">
+        <article class="trust-card">
+          <p class="trust-label">運営・著者</p>
+          <h3>川原 拓馬</h3>
+          <p>株式会社シザコンサルティング代表取締役。銀行・コンサルティング会社での経験を経て2012年に創業し、補助金、財務、資金調達、事業計画、経営管理を支援しています。</p>
+          <a class="text-link" href="/author/takuma-kawahara/">代表者・著者プロフィール →</a>
+        </article>
+        <article class="trust-card">
+          <p class="trust-label">情報源</p>
+          <h3>官公庁・制度事務局の一次情報を優先</h3>
+          <p>公募要領、交付規程、公式FAQなどを優先し、公式に確認できる事実と当社の実務上の見解を分けて説明します。</p>
+          <a class="text-link" href="/editorial-policy/">編集方針・AI利用範囲 →</a>
+        </article>
+        <article class="trust-card">
+          <p class="trust-label">個別判断</p>
+          <h3>自動判定や採択保証はしません</h3>
+          <p>制度対象、採択、税制適用、融資実行は、最新の公式資料と個別の事実関係を確認して判断します。</p>
+          <a class="text-link" href="/about/">会社・支援体制 →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head">
         <p class="eyebrow">無料Web診断の流れ</p>
         <h2>申込みから面談後まで</h2>
       </div>
@@ -85,14 +114,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="section alt">
+  <section class="section">
     <div class="container faq-wrap">
       <div class="section-head">
         <p class="eyebrow">よくある質問</p>
         <h2>相談前のご不安にお答えします</h2>
       </div>
       <div class="faq-list">
-        <details><summary>まだ計画が固まっていなくても相談できますか。</summary><p>はい。設備の候補、投資規模、実施時期が概算でも構いません。制度を選ぶ前に整理すべき論点を確認します。</p></details>
+        <details open><summary>まだ計画が固まっていなくても相談できますか。</summary><p>はい。設備の候補、投資規模、実施時期が概算でも構いません。制度を選ぶ前に整理すべき論点を確認します。</p></details>
         <details><summary>小規模な投資でも対象ですか。</summary><p>対象です。ただし、投資規模によっては補助金申請よりも税制優遇や融資の方が合理的な場合があります。</p></details>
         <details><summary>無料診断後に契約を求められますか。</summary><p>診断後に必ず契約いただく必要はありません。正式支援が必要で、当社がお役に立てる場合のみ内容と費用をご案内します。</p></details>
         <details><summary>何を準備すればよいですか。</summary><p>予定している投資の内容、概算金額、実施時期が分かれば十分です。見積書や事業計画がある場合は面談時に確認します。</p></details>
@@ -101,7 +130,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="section">
+  <section class="section alt">
     <div class="container cta">
       <div><h2>具体的な計画がある方へ</h2><p>30分のWeb面談で、制度候補と次に確認すべきことを整理します。</p></div>
       <a class="button" href="/consultation/">無料Web診断を申し込む</a>
