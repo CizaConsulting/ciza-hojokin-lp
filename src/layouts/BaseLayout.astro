@@ -15,6 +15,7 @@ const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
 const organizationId = `${siteUrl}#organization`;
 const websiteId = `${siteUrl}#website`;
 const personUrl = new URL('/author/takuma-kawahara/', siteUrl).href;
+const personImage = new URL('/images/takuma-kawahara.jpg', siteUrl).href;
 const extraSchema = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 const structuredData = {
   '@context': 'https://schema.org',
@@ -23,10 +24,17 @@ const structuredData = {
       '@type': 'Organization',
       '@id': organizationId,
       name: '株式会社シザコンサルティング',
+      alternateName: 'CIZA Consulting',
       url: 'https://www.ciza.co.jp/',
       email: 'info@ciza.co.jp',
-      foundingDate: '2012',
+      telephone: '06-6476-9777',
+      foundingDate: '2012-10-17',
       description: '補助金、財務、融資、事業計画、経営管理を横断して中小企業の投資と成長を支援するコンサルティング会社です。',
+      sameAs: [
+        'https://www.ciza.co.jp/',
+        'https://www.youtube.com/@takuma_kawahara',
+        'https://keieikanri.ciza.co.jp/'
+      ],
       address: {
         '@type': 'PostalAddress',
         postalCode: '532-0011',
@@ -40,10 +48,21 @@ const structuredData = {
       '@type': 'Person',
       '@id': `${personUrl}#person`,
       name: '川原 拓馬',
-      jobTitle: '代表取締役',
+      jobTitle: '代表取締役・経営コンサルタント',
       url: personUrl,
+      image: personImage,
       worksFor: { '@id': organizationId },
-      knowsAbout: ['補助金', '財務', '資金調達', '事業計画', '経営管理', '中小企業支援']
+      alumniOf: { '@type': 'CollegeOrUniversity', name: '神戸大学経営学部' },
+      sameAs: [
+        'https://www.youtube.com/@takuma_kawahara',
+        'https://www.ciza.co.jp/greeting.html',
+        'https://keieikanri.ciza.co.jp/about'
+      ],
+      knowsAbout: [
+        '補助金', 'ものづくり補助金', '成長加速化補助金', '事業再構築補助金',
+        '省力化投資補助金', '事業承継・M&A補助金', '小規模事業者持続化補助金',
+        'IT導入補助金', '財務', '資金調達', '事業計画', '経営管理', '中小企業支援'
+      ]
     },
     {
       '@type': 'WebSite',
@@ -74,6 +93,7 @@ const structuredData = {
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="株式会社シザコンサルティング／川原 拓馬" />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
