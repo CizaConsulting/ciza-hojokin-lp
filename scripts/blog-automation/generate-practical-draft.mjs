@@ -59,7 +59,15 @@ async function fetchOfficialSource(source) {
   if (!response.ok) throw new Error(`${source.name}: HTTP ${response.status}`);
   const content = normalizeHtml(await response.text()).slice(0, 7000);
   if (content.length < 200) throw new Error(`${source.name}: fetched content is unexpectedly short`);
-  return { id: source.id, name: source.name, url: source.url, scope: source.scope, content };
+  return {
+    id: source.id,
+    name: source.name,
+    url: source.url,
+    scope: source.scope,
+    role: source.role,
+    region: source.region,
+    content,
+  };
 }
 
 function setPropertyIfPresent(properties, schema, names, types, value) {
@@ -124,19 +132,23 @@ const [meetings, judgments] = await Promise.all([
 
 const config = JSON.parse(configRaw);
 const officialSources = [];
-for (const source of (config.sources || []).filter((item) => item.enabled).sort((a, b) => (a.priority || 99) - (b.priority || 99))) {
+const primarySources = (config.sources || [])
+  .filter((item) => item.enabled && item.articleEligible !== false && ['primary', 'local-primary'].includes(item.role || 'primary'))
+  .sort((a, b) => (a.priority || 99) - (b.priority || 99));
+
+for (const source of primarySources) {
   try {
     officialSources.push(await fetchOfficialSource(source));
   } catch (error) {
     console.warn(error.message);
   }
 }
-if (!officialSources.length) throw new Error('No official subsidy sources could be fetched');
+if (!officialSources.length) throw new Error('No primary official subsidy sources could be fetched');
 
 const existingTitles = (existingDraftResult.results || []).map(getTitle).filter(Boolean);
 const today = new Date().toISOString().slice(0, 10);
 
-const instructions = `あなたは株式会社シザコンサルティングの編集者です。川原拓馬の実際の補助金相談・支援経験と、官公庁または補助金事務局の公式情報をもとに、実務解説記事を1本作成してください。
+const instructions = `あなたは株式会社シザコンサルティングの編集者です。川原拓馬の実際の補助金相談・支援経験と、官公庁・自治体・補助金事務局の一次情報をもとに、長く役立つ実務ガイドを1本作成してください。
 
 目的:
 - 中小企業の経営者が、補助金を使う前に何を確認すべきか分かる
@@ -147,11 +159,13 @@ const instructions = `あなたは株式会社シザコンサルティングの�
 - 会議ログから記事価値の高い相談・事例を1つ選ぶ
 - 判断ライブラリの考え方を1つ以上使う
 - 公式情報源を1つ選び、制度上の事実はその内容だけを根拠にする
+- ミラサポplus等の横断案内ではなく、制度専用サイト、所管官庁、自治体の直接ページを出典にする
 - 選択した公式情報源に書かれていない補助率、上限額、締切、対象条件を作らない
 - 企業名、個人名、固有の日付、固有の金額などは匿名化・変更する
 - 事実にない成果や発言を作らない
 - 既存タイトルと同じ論点を避ける
-- 1記事1論点。2000〜3000字程度
+- ニュース記事ではなく、制度が変わっても応用できる1記事1論点の実務ガイドにする
+- 2000〜3000字程度
 - AI的な抽象表現を避け、「確認する」「一緒に考える」「発注前に見る」など自然な日本語にする
 - body_markdownはfrontmatterと出典欄を含めず、H1から始める
 - 最後に匿名化注記と [30分無料Web診断](/consultation/) への案内を入れる
@@ -212,7 +226,7 @@ setPropertyIfPresent(properties, draftSchema, ['元素材URL'], ['url'], article
 setPropertyIfPresent(properties, draftSchema, ['出典名'], ['rich_text'], selectedOfficialSource.name);
 setPropertyIfPresent(properties, draftSchema, ['出典URL'], ['url'], selectedOfficialSource.url);
 setPropertyIfPresent(properties, draftSchema, ['対象制度'], ['rich_text'], article.target_program);
-setPropertyIfPresent(properties, draftSchema, ['変更内容'], ['rich_text'], `実務解説記事。公式情報を選んだ理由: ${article.official_source_reason}`);
+setPropertyIfPresent(properties, draftSchema, ['変更内容'], ['rich_text'], `実務ガイド。公式情報を選んだ理由: ${article.official_source_reason}`);
 setPropertyIfPresent(properties, draftSchema, ['狙うキーワード'], ['rich_text'], article.keywords.join('、'));
 setPropertyIfPresent(properties, draftSchema, ['スラッグ', 'slug', 'Slug'], ['rich_text'], article.slug);
 
@@ -221,6 +235,7 @@ console.log(JSON.stringify({
   created: true,
   site: targetSite,
   articleType: '実務解説',
+  contentType: '実務ガイド',
   title: article.title,
   notionUrl: page.url,
   source: article.source_title,

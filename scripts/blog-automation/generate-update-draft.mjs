@@ -122,6 +122,8 @@ const existingDrafts = (existingDraftResult.results || [])
   .map((page) => ({
     title: getTitle(page),
     status: getPropertyValue(page, 'ステータス'),
+    targetProgram: getPropertyValue(page, '対象制度'),
+    changeSummary: getPropertyValue(page, '変更内容'),
     materialUrl: getPropertyValue(page, '元素材URL'),
     sourceUrl: getPropertyValue(page, '出典URL'),
   }));
@@ -130,6 +132,7 @@ let createdDraft = null;
 let initialized = 0;
 let unchanged = 0;
 let minorChanges = 0;
+let discoveryChanges = 0;
 let deferred = 0;
 const errors = [];
 const now = new Date();
@@ -153,6 +156,8 @@ for (const source of sources) {
     state.sources[source.id] = {
       name: source.name,
       url: source.url,
+      role: source.role,
+      region: source.region,
       finalUrl: fetched.finalUrl,
       hash: fetched.hash,
       content: fetched.content,
@@ -166,6 +171,21 @@ for (const source of sources) {
     previous.checkedAt = now.toISOString();
     previous.finalUrl = fetched.finalUrl;
     unchanged += 1;
+    continue;
+  }
+
+  if (source.articleEligible === false) {
+    state.sources[source.id] = {
+      ...previous,
+      role: source.role,
+      region: source.region,
+      finalUrl: fetched.finalUrl,
+      hash: fetched.hash,
+      content: fetched.content,
+      checkedAt: now.toISOString(),
+      lastDecision: '発見用途の横断ページ。直接の記事案は作成しない',
+    };
+    discoveryChanges += 1;
     continue;
   }
 
@@ -187,7 +207,7 @@ for (const source of sources) {
     continue;
   }
 
-  const instructions = `あなたは株式会社シザコンサルティングの補助金情報編集者です。官公庁または補助金事務局の公式ページの変更を確認し、中小企業の経営者に知らせる価値がある変更だけを記事案にしてください。
+  const instructions = `あなたは株式会社シザコンサルティングの補助金情報編集者です。官公庁、自治体または補助金事務局の一次情報の変更を確認し、中小企業の経営者に知らせる価値がある変更だけを補助金ニュースの記事案にしてください。
 
 絶対ルール:
 - 入力された公式ページの旧内容と新内容だけを根拠にする
@@ -195,6 +215,8 @@ for (const source of sources) {
 - 公式ページで確認できない説明を書かない
 - レイアウト変更、表記修正、更新日時だけの変化では記事を作らない
 - 公募開始、締切変更、公募要領・FAQの重要変更、対象条件の変更、採択発表など、企業の行動に影響する変更を優先する
+- 同じ制度、同じ公募回、同じ変更内容が既存記事または既存下書きにあれば、別の情報源で見つけても重複記事を作らない
+- 制度専用サイト、所管官庁・自治体の直接ページを出典として優先する
 - 既存記事に追記すべき内容なら article_type を「既存記事更新」にし、existing_slug に既存記事一覧のslugを正確に入れる
 - 既存記事更新の場合、body_markdownは既存記事の本文を土台に、変更部分を反映した完全な改訂後本文にする。変更と無関係な説明を削除しない
 - 既存記事更新の場合はslugにもexisting_slugと同じ値を入れる
@@ -228,7 +250,15 @@ for (const source of sources) {
   const decision = await openAIJson({
     instructions,
     input: JSON.stringify({
-      source: { name: source.name, url: source.url, scope: source.scope },
+      source: {
+        name: source.name,
+        url: source.url,
+        scope: source.scope,
+        role: source.role,
+        region: source.region,
+        dedupe_group: source.dedupeGroup,
+      },
+      dedupe_policy: config.dedupePolicy,
       previous_content: previous.content,
       current_content: fetched.content,
       existing_articles: existingArticles,
@@ -292,6 +322,7 @@ for (const source of sources) {
     notionUrl: page.url,
     source: source.name,
     articleType: decision.article_type,
+    contentType: '補助金ニュース',
   };
 
   state.sources[source.id] = {
@@ -314,6 +345,7 @@ console.log(JSON.stringify({
   initialized,
   unchanged,
   minorChanges,
+  discoveryChanges,
   deferred,
   createdDraft,
   errors,

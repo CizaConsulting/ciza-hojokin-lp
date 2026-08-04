@@ -1,13 +1,36 @@
 {
-  "version": 1,
+  "version": 2,
+  "dedupePolicy": {
+    "rule": "同じ制度・同じ公募回・同じ変更内容は1記事だけ作成する",
+    "preferredSourceOrder": [
+      "補助金事務局・制度専用公式サイト",
+      "所管省庁・自治体の公式ページ",
+      "政府・中小機構の横断案内ページ"
+    ],
+    "discoveryOnlyRule": "横断案内ページは制度の発見に使い、記事の出典は可能な限り制度専用ページまたは所管官庁の直接ページを使う"
+  },
   "sources": [
     {
-      "id": "chusho-subsidy-open-calls",
-      "name": "中小企業庁 補助金公募情報",
-      "url": "https://www.chusho.meti.go.jp/koukai/hojyokin/kobo.html",
+      "id": "mirasapo-plus",
+      "name": "ミラサポplus",
+      "url": "https://mirasapo-plus.go.jp/",
       "enabled": true,
-      "priority": 1,
-      "scope": "国の主要な補助金の公募開始、公募要領公開、申請期間変更"
+      "priority": 50,
+      "role": "discovery",
+      "articleEligible": false,
+      "region": "全国・地域",
+      "scope": "国の主要補助金の一覧、最新情報、地域の補助金・助成金の発見。直接の制度ページがある場合はそちらを出典にする"
+    },
+    {
+      "id": "chusho-subsidy-index",
+      "name": "中小企業庁 補助金の公募・採択",
+      "url": "https://www.chusho.meti.go.jp/koukai/hojyokin/index.html",
+      "enabled": true,
+      "priority": 40,
+      "role": "discovery",
+      "articleEligible": false,
+      "region": "全国",
+      "scope": "中小企業庁所管補助金の公募・採択情報の発見。制度専用公式サイトまたは個別発表ページを優先する"
     },
     {
       "id": "new-business-manufacturing",
@@ -15,7 +38,11 @@
       "url": "https://shinjigyou-monodukuri.smrj.go.jp/",
       "enabled": true,
       "priority": 1,
-      "scope": "公募要領、申請日程、FAQ、応募申請ガイドの更新"
+      "role": "primary",
+      "articleEligible": true,
+      "dedupeGroup": "new-business-manufacturing",
+      "region": "全国",
+      "scope": "公募要領、申請日程、FAQ、応募申請ガイド、採択結果の重要更新"
     },
     {
       "id": "labor-saving-investment",
@@ -23,31 +50,94 @@
       "url": "https://shoryokuka.smrj.go.jp/",
       "enabled": true,
       "priority": 1,
-      "scope": "カタログ注文型・一般型の公募、申請受付、資料更新"
+      "role": "primary",
+      "articleEligible": true,
+      "dedupeGroup": "labor-saving-investment",
+      "region": "全国",
+      "scope": "カタログ注文型・一般型の公募、申請受付、資料、FAQ、締切の重要更新"
+    },
+    {
+      "id": "digital-ai-support",
+      "name": "デジタル化・AI導入補助金 公式サイト",
+      "url": "https://it-shien.smrj.go.jp/",
+      "enabled": true,
+      "priority": 1,
+      "role": "primary",
+      "articleEligible": true,
+      "dedupeGroup": "digital-ai-support",
+      "region": "全国",
+      "scope": "公募要領、申請締切、対象ITツール・対象経費、採択結果の重要更新"
     },
     {
       "id": "business-succession-ma",
       "name": "事業承継・M&A補助金 公式サイト",
       "url": "https://shoukei-mahojokin.go.jp/",
       "enabled": true,
-      "priority": 2,
-      "scope": "公募要領、申請受付、説明会、交付申請資料の更新"
+      "priority": 1,
+      "role": "primary",
+      "articleEligible": true,
+      "dedupeGroup": "business-succession-ma",
+      "region": "全国",
+      "scope": "公募要領、申請受付、説明会、交付申請資料、FAQの重要更新"
     },
     {
-      "id": "chusho-digital-support",
-      "name": "中小企業庁 デジタル・IT化支援",
-      "url": "https://www.chusho.meti.go.jp/keiei/gijut/index.html",
+      "id": "growth-acceleration",
+      "name": "中小企業成長加速化補助金 公式サイト",
+      "url": "https://growth-100-oku.smrj.go.jp/",
+      "enabled": true,
+      "priority": 1,
+      "role": "primary",
+      "articleEligible": true,
+      "dedupeGroup": "growth-acceleration",
+      "region": "全国",
+      "scope": "公募要領、申請日程、金融機関確認、採択結果、FAQの重要更新"
+    },
+    {
+      "id": "tourism-agency-open-calls",
+      "name": "観光庁 公募情報",
+      "url": "https://www.mlit.go.jp/kankocho/kobo.html",
       "enabled": true,
       "priority": 2,
-      "scope": "デジタル化・AI導入補助金の公募、採択、制度変更"
+      "role": "primary",
+      "articleEligible": true,
+      "dedupeGroup": "tourism-agency",
+      "region": "全国",
+      "scope": "観光事業者向け補助金・支援事業の公募開始、締切、要領変更"
     },
     {
-      "id": "chusho-subsidy-results",
-      "name": "中小企業庁 補助金採択結果",
-      "url": "https://www.chusho.meti.go.jp/koukai/hojyokin/saitaku.html",
+      "id": "chusho-tax-support",
+      "name": "中小企業庁 中小企業向け税制",
+      "url": "https://www.chusho.meti.go.jp/zaimu/zeisei/index.html",
       "enabled": true,
       "priority": 3,
-      "scope": "主要補助金の採択結果と訂正情報"
+      "role": "primary",
+      "articleEligible": true,
+      "dedupeGroup": "chusho-tax-support",
+      "region": "全国",
+      "scope": "設備投資、賃上げ、事業承継等に関する中小企業向け税制改正と重要資料の更新"
+    },
+    {
+      "id": "kobe-business-support",
+      "name": "神戸市 市内事業者向け支援",
+      "url": "https://www.city.kobe.lg.jp/a31812/coronavsupportsforbusiness.html",
+      "enabled": true,
+      "priority": 10,
+      "role": "local-primary",
+      "articleEligible": true,
+      "dedupeGroup": "kobe-business-support",
+      "region": "兵庫県神戸市",
+      "scope": "神戸市内事業者向けの補助金・助成金・支援制度の新設、募集開始、締切変更"
+    },
+    {
+      "id": "osaka-city-business-news",
+      "name": "大阪市 産業・ビジネス支援のお知らせ",
+      "url": "https://www.city.osaka.lg.jp/sangyo/category/3037-4-0-0-0-0-0-0-0-0.html",
+      "enabled": true,
+      "priority": 20,
+      "role": "local-discovery",
+      "articleEligible": false,
+      "region": "大阪府大阪市",
+      "scope": "大阪市の事業者向け支援情報の発見。記事化する場合は個別の大阪市公式ページを出典にする"
     }
   ]
 }

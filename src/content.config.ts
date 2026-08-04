@@ -9,6 +9,7 @@ const blog = defineCollection({
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
     officialCheckedAt: z.coerce.date().optional(),
+    contentType: z.enum(['実務ガイド', '補助金ニュース']).default('実務ガイド'),
     category: z.enum(['設備投資', '新規事業', '省力化', '資金調達', '申請実務', '制度情報']),
     tags: z.array(z.string()).default([]),
     author: z.string().default('川原 拓馬'),
