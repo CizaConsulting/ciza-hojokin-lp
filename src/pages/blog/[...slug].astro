@@ -1,0 +1,87 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+interface Props { post: CollectionEntry<'blog'>; }
+const { post } = Astro.props;
+const { Content } = await render(post);
+const articleUrl = new URL(`/blog/${post.id}/`, Astro.site ?? Astro.url).href;
+const authorUrl = new URL('/author/takuma-kawahara/', Astro.site ?? Astro.url).href;
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+
+const articleSchema = {
+  '@type': 'Article',
+  '@id': `${articleUrl}#article`,
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.publishedAt.toISOString(),
+  dateModified: (post.data.updatedAt ?? post.data.publishedAt).toISOString(),
+  author: { '@id': `${authorUrl}#person` },
+  publisher: { '@id': `${new URL('/', Astro.site ?? Astro.url).href}#organization` },
+  mainEntityOfPage: { '@id': `${articleUrl}#webpage` },
+  inLanguage: 'ja-JP',
+  about: post.data.tags,
+};
+---
+<BaseLayout title={post.data.title} description={post.data.description} schema={articleSchema}>
+  <div class="page-hero article-hero">
+    <div class="container article-header">
+      <nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> / <a href="/blog/">記事一覧</a> / {post.data.title}</nav>
+      <p class="eyebrow">{post.data.category}</p>
+      <h1>{post.data.title}</h1>
+      <p class="lead">{post.data.description}</p>
+      <div class="article-meta">
+        <span>著者：<a href="/author/takuma-kawahara/">{post.data.author}</a></span>
+        <span>公開：<time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt)}</time></span>
+        {post.data.updatedAt && <span>更新：<time datetime={post.data.updatedAt.toISOString()}>{formatDate(post.data.updatedAt)}</time></span>}
+        {post.data.officialCheckedAt && <span>公式情報確認：<time datetime={post.data.officialCheckedAt.toISOString()}>{formatDate(post.data.officialCheckedAt)}</time></span>}
+      </div>
+    </div>
+  </div>
+
+  <section class="section article-section">
+    <article class="container article-body">
+      {post.data.directAnswer && (
+        <div class="direct-answer">
+          <p class="direct-answer-label">結論</p>
+          <p>{post.data.directAnswer}</p>
+        </div>
+      )}
+      <Content />
+
+      {post.data.officialSources.length > 0 && (
+        <section class="official-sources">
+          <h2>確認した公式情報</h2>
+          <ul>
+            {post.data.officialSources.map((source) => (
+              <li><a class="text-link" href={source.url} target="_blank" rel="noopener noreferrer">{source.title}</a></li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <aside class="article-author">
+        <img src="/images/takuma-kawahara.jpg" alt="株式会社シザコンサルティング代表取締役 川原拓馬" width="180" height="120" loading="lazy" />
+        <div>
+          <p class="eyebrow">著者・監修</p>
+          <h2>川原 拓馬</h2>
+          <p>株式会社シザコンサルティング代表取締役。補助金採択支援累計300件超、ものづくり補助金の審査員を約2年間担当。財務・資金調達・事業計画まで横断して支援しています。</p>
+          <a class="text-link" href="/author/takuma-kawahara/">プロフィールを見る →</a>
+        </div>
+      </aside>
+    </article>
+  </section>
+
+  <section class="section alt">
+    <div class="container cta">
+      <div><h2>自社の計画に当てはめて確認する</h2><p>制度候補、発注前の注意点、資金面の論点を30分で整理します。</p></div>
+      <a class="button" href="/consultation/">無料Web診断を申し込む</a>
+    </div>
+  </section>
+</BaseLayout>
