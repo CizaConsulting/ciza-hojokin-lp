@@ -1,9 +1,7 @@
 name: Generate subsidy practical article draft
 
+# Scheduled execution is handled by the ChatGPT task. Keep this workflow for manual fallback only.
 on:
-  schedule:
-    # Wednesday 10:00 JST (01:00 UTC)
-    - cron: '0 1 * * 3'
   workflow_dispatch:
 
 permissions:
