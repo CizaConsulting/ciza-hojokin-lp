@@ -1,9 +1,7 @@
 name: Monitor official subsidy updates
 
+# Scheduled execution is handled by the ChatGPT task. Keep this workflow for manual fallback only.
 on:
-  schedule:
-    # Weekdays 09:30 JST (00:30 UTC)
-    - cron: '30 0 * * 1-5'
   workflow_dispatch:
 
 permissions:
