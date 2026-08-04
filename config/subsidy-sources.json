@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "chusho-subsidy-open-calls",
+      "name": "中小企業庁 補助金公募情報",
+      "url": "https://www.chusho.meti.go.jp/koukai/hojyokin/kobo.html",
+      "enabled": true,
+      "priority": 1,
+      "scope": "国の主要な補助金の公募開始、公募要領公開、申請期間変更"
+    },
+    {
+      "id": "new-business-manufacturing",
+      "name": "新事業進出・ものづくり商業サービス補助金 公式サイト",
+      "url": "https://shinjigyou-monodukuri.smrj.go.jp/",
+      "enabled": true,
+      "priority": 1,
+      "scope": "公募要領、申請日程、FAQ、応募申請ガイドの更新"
+    },
+    {
+      "id": "labor-saving-investment",
+      "name": "中小企業省力化投資補助金 公式サイト",
+      "url": "https://shoryokuka.smrj.go.jp/",
+      "enabled": true,
+      "priority": 1,
+      "scope": "カタログ注文型・一般型の公募、申請受付、資料更新"
+    },
+    {
+      "id": "business-succession-ma",
+      "name": "事業承継・M&A補助金 公式サイト",
+      "url": "https://shoukei-mahojokin.go.jp/",
+      "enabled": true,
+      "priority": 2,
+      "scope": "公募要領、申請受付、説明会、交付申請資料の更新"
+    },
+    {
+      "id": "chusho-digital-support",
+      "name": "中小企業庁 デジタル・IT化支援",
+      "url": "https://www.chusho.meti.go.jp/keiei/gijut/index.html",
+      "enabled": true,
+      "priority": 2,
+      "scope": "デジタル化・AI導入補助金の公募、採択、制度変更"
+    },
+    {
+      "id": "chusho-subsidy-results",
+      "name": "中小企業庁 補助金採択結果",
+      "url": "https://www.chusho.meti.go.jp/koukai/hojyokin/saitaku.html",
+      "enabled": true,
+      "priority": 3,
+      "scope": "主要補助金の採択結果と訂正情報"
+    }
+  ]
+}
