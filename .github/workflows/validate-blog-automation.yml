@@ -37,6 +37,7 @@ jobs:
       - name: Check automation scripts
         run: |
           node --check scripts/blog-automation/lib.mjs
+          node --check scripts/blog-automation/generate-practical-draft.mjs
           node --check scripts/blog-automation/generate-update-draft.mjs
           node --check scripts/blog-automation/publish-approved.mjs
           node --check scripts/blog-automation/finalize-publish.mjs
