@@ -66,9 +66,17 @@ function parseFrontmatterValue(markdown, key) {
   return markdown.match(new RegExp(`^${key}:\\s*["']?([^\\n"']+)`, 'm'))?.[1]?.trim() || '';
 }
 
+function articleBody(markdown) {
+  return markdown
+    .replace(/^---\n[\s\S]*?\n---\n?/, '')
+    .replace(/\n## 出典・情報確認日[\s\S]*$/m, '')
+    .trim()
+    .slice(0, 7000);
+}
+
 async function listExistingArticles() {
   try {
-    const files = (await fs.readdir(blogDir)).filter((name) => /\.mdx?$/.test(name));
+    const files = (await fs.readdir(blogDir)).filter((name) => /\.mdx?$/.test(name)).slice(0, 10);
     const articles = [];
     for (const file of files) {
       const markdown = await fs.readFile(path.join(blogDir, file), 'utf8');
@@ -76,6 +84,7 @@ async function listExistingArticles() {
         slug: file.replace(/\.mdx?$/, ''),
         title: parseFrontmatterValue(markdown, 'title'),
         description: parseFrontmatterValue(markdown, 'description'),
+        current_body_markdown: articleBody(markdown),
       });
     }
     return articles;
@@ -187,11 +196,13 @@ for (const source of sources) {
 - レイアウト変更、表記修正、更新日時だけの変化では記事を作らない
 - 公募開始、締切変更、公募要領・FAQの重要変更、対象条件の変更、採択発表など、企業の行動に影響する変更を優先する
 - 既存記事に追記すべき内容なら article_type を「既存記事更新」にし、existing_slug に既存記事一覧のslugを正確に入れる
+- 既存記事更新の場合、body_markdownは既存記事の本文を土台に、変更部分を反映した完全な改訂後本文にする。変更と無関係な説明を削除しない
+- 既存記事更新の場合はslugにもexisting_slugと同じ値を入れる
 - 対応する既存記事がない場合は article_type を「制度更新」、existing_slug は空文字にする
 - body_markdownにはfrontmatterと出典欄を入れない。H1から始める
 - 「何が変わったか」「どの企業に関係するか」「申請を考えている企業が今すること」「注意点」を具体的に書く
 - 誇張せず、1200〜2200字程度の日本語で書く
-- should_create_draftがfalseの場合も、他の項目は空文字または空配列で返す`;
+- should_create_draftがfalseの場合も、article_typeはどちらかを選び、他の文字列は空文字、keywordsは空配列で返す`;
 
   const schema = {
     type: 'object',
@@ -241,12 +252,18 @@ for (const source of sources) {
     continue;
   }
 
-  if (!slugIsSafe(decision.slug)) throw new Error(`Unsafe generated slug: ${decision.slug}`);
+  let targetSlug;
   if (decision.article_type === '既存記事更新') {
     if (!decision.existing_slug || !existingArticles.some((article) => article.slug === decision.existing_slug)) {
       throw new Error(`Model selected an unknown existing article: ${decision.existing_slug}`);
     }
+    targetSlug = decision.existing_slug;
+  } else {
+    if (!slugIsSafe(decision.slug)) throw new Error(`Unsafe generated slug: ${decision.slug}`);
+    targetSlug = decision.slug;
   }
+  if (!slugIsSafe(targetSlug)) throw new Error(`Unsafe target slug: ${targetSlug}`);
+  if (!decision.body_markdown.startsWith('# ')) throw new Error('Generated article body must start with H1');
 
   const titleName = findProperty(draftSchema, ['タイトル', '記事タイトル', '名前', 'Name'], 'title');
   if (!titleName) throw new Error('Shared article database has no title property');
@@ -264,9 +281,9 @@ for (const source of sources) {
   setPropertyIfPresent(properties, draftSchema, ['対象制度'], ['rich_text'], decision.target_program);
   setPropertyIfPresent(properties, draftSchema, ['変更内容'], ['rich_text'], decision.change_summary);
   setPropertyIfPresent(properties, draftSchema, ['狙うキーワード'], ['rich_text'], decision.keywords.join('、'));
-  setPropertyIfPresent(properties, draftSchema, ['スラッグ', 'slug', 'Slug'], ['rich_text'], decision.article_type === '既存記事更新' ? decision.existing_slug : decision.slug);
+  setPropertyIfPresent(properties, draftSchema, ['スラッグ', 'slug', 'Slug'], ['rich_text'], targetSlug);
   if (decision.article_type === '既存記事更新') {
-    setPropertyIfPresent(properties, draftSchema, ['既存記事URL'], ['url'], `https://hojokin.ciza.co.jp/blog/${decision.existing_slug}`);
+    setPropertyIfPresent(properties, draftSchema, ['既存記事URL'], ['url'], `https://hojokin.ciza.co.jp/blog/${targetSlug}`);
   }
 
   const page = await createPage(draftId, properties, markdownToBlocks(decision.body_markdown));

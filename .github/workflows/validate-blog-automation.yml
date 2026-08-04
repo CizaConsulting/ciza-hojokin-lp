@@ -1,5 +1,6 @@
 name: Validate blog automation
 
+# Runs syntax checks and an Astro production build for every automation change.
 on:
   push:
     paths:
@@ -32,8 +33,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
+      - run: npm install --no-package-lock --no-audit --no-fund
       - name: Check automation scripts
         run: |
           node --check scripts/blog-automation/lib.mjs
