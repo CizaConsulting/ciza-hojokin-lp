@@ -1,9 +1,7 @@
 name: Publish approved subsidy article
 
+# Scheduled execution is handled by the ChatGPT task. Keep this workflow for manual fallback only.
 on:
-  schedule:
-    # Weekdays 09:00 JST (00:00 UTC)
-    - cron: '0 0 * * 1-5'
   workflow_dispatch:
 
 permissions:
