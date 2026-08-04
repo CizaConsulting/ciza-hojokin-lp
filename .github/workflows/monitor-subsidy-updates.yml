@@ -39,6 +39,28 @@ jobs:
           NOTION_TARGET_SITE: 補助金
           NOTION_REVIEW_STATUS: 要レビュー
 
+      - name: Ignore timestamp-only state changes
+        shell: bash
+        run: |
+          if git diff --quiet -- data/subsidy-source-state.json; then
+            exit 0
+          fi
+          node <<'NODE'
+          const fs = require('fs');
+          const cp = require('child_process');
+          const current = JSON.parse(fs.readFileSync('data/subsidy-source-state.json', 'utf8'));
+          const previous = JSON.parse(cp.execFileSync('git', ['show', 'HEAD:data/subsidy-source-state.json'], { encoding: 'utf8' }));
+          const normalize = (value) => {
+            const copy = JSON.parse(JSON.stringify(value));
+            delete copy.updatedAt;
+            for (const source of Object.values(copy.sources || {})) delete source.checkedAt;
+            return copy;
+          };
+          if (JSON.stringify(normalize(current)) === JSON.stringify(normalize(previous))) {
+            cp.execFileSync('git', ['checkout', '--', 'data/subsidy-source-state.json']);
+          }
+          NODE
+
       - name: Save source snapshots
         shell: bash
         run: |
