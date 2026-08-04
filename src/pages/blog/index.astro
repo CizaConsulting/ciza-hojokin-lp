@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+---
+<BaseLayout title="補助金・支援制度の記事一覧" description="設備投資、新規事業、省力化、資金調達、補助金申請実務に関する解説記事を掲載しています。">
+  <div class="page-hero">
+    <div class="container prose">
+      <p class="eyebrow">補助金・支援制度の実務情報</p>
+      <h1>記事一覧</h1>
+      <p class="lead">制度の公式情報だけでなく、発注時期、資金繰り、投資判断など、実務で確認すべき論点を整理します。</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      {posts.length > 0 ? (
+        <div class="blog-grid">
+          {posts.map((post) => (
+            <article class="blog-card">
+              <div class="blog-meta">
+                <span>{post.data.category}</span>
+                <time datetime={post.data.publishedAt.toISOString()}>{formatDate(post.data.publishedAt)}</time>
+              </div>
+              <h2><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2>
+              <p>{post.data.description}</p>
+              <a class="text-link" href={`/blog/${post.id}/`}>記事を読む →</a>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="notice">現在、初期記事を準備しています。公開後、設備投資・新規事業・省力化などのテーマから順次掲載します。</div>
+      )}
+    </div>
+  </section>
+</BaseLayout>
