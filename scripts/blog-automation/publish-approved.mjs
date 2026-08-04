@@ -85,6 +85,7 @@ const description = paragraph.slice(0, 155);
 const keywords = splitKeywords(getPropertyValue(page, '狙うキーワード'));
 if (targetProgram && !keywords.includes(targetProgram)) keywords.unshift(targetProgram);
 const tags = [...new Set(keywords)].slice(0, 8);
+const contentType = articleType === '実務解説' ? '実務ガイド' : '補助金ニュース';
 const category = articleType === '実務解説' ? '申請実務' : '制度情報';
 const today = new Date().toISOString().slice(0, 10);
 
@@ -115,7 +116,7 @@ if (articleType === '既存記事更新') {
 
 const sourceSection = `## 出典・情報確認日\n\n- 出典： [${sourceName}](${sourceUrl})\n- 情報確認日：${checkedAt}\n\n補助金や支援制度は、公募回や時期によって内容が変わります。申請時には必ず最新の公式資料をご確認ください。`;
 
-const frontmatter = `---\ntitle: ${escapeYaml(title)}\ndescription: ${escapeYaml(description)}\npublishedAt: ${publishedAt}\n${updatedAtLine}officialCheckedAt: ${checkedAt}\ncategory: ${escapeYaml(category)}\ntags: ${JSON.stringify(tags)}\nauthor: ${escapeYaml('川原 拓馬')}\nreviewer: ${escapeYaml('株式会社シザコンサルティング')}\nofficialSources:\n  - title: ${escapeYaml(sourceName)}\n    url: ${escapeYaml(sourceUrl)}\ndraft: false\ndirectAnswer: ${escapeYaml(directAnswer)}\n---`;
+const frontmatter = `---\ntitle: ${escapeYaml(title)}\ndescription: ${escapeYaml(description)}\npublishedAt: ${publishedAt}\n${updatedAtLine}officialCheckedAt: ${checkedAt}\ncontentType: ${escapeYaml(contentType)}\ncategory: ${escapeYaml(category)}\ntags: ${JSON.stringify(tags)}\nauthor: ${escapeYaml('川原 拓馬')}\nreviewer: ${escapeYaml('株式会社シザコンサルティング')}\nofficialSources:\n  - title: ${escapeYaml(sourceName)}\n    url: ${escapeYaml(sourceUrl)}\ndraft: false\ndirectAnswer: ${escapeYaml(directAnswer)}\n---`;
 
 await fs.writeFile(filePath, `${frontmatter}\n\n${body}\n\n${sourceSection}\n`, 'utf8');
 
@@ -133,9 +134,10 @@ await fs.writeFile('.blog-publish-result.json', JSON.stringify({
   title,
   slug,
   article_type: articleType,
+  content_type: contentType,
   file_path: filePath,
   published_url: publishedUrl,
   notion_updates: updates,
 }, null, 2));
 
-console.log(JSON.stringify({ prepared: true, title, slug, article_type: articleType, file_path: filePath }, null, 2));
+console.log(JSON.stringify({ prepared: true, title, slug, article_type: articleType, content_type: contentType, file_path: filePath }, null, 2));
