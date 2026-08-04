@@ -1,0 +1,43 @@
+name: Validate blog automation
+
+on:
+  push:
+    paths:
+      - 'scripts/blog-automation/**'
+      - 'config/subsidy-sources.json'
+      - 'data/subsidy-source-state.json'
+      - 'src/content.config.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/**'
+  pull_request:
+    paths:
+      - 'scripts/blog-automation/**'
+      - 'config/subsidy-sources.json'
+      - 'data/subsidy-source-state.json'
+      - 'src/content.config.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/**'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Check automation scripts
+        run: |
+          node --check scripts/blog-automation/lib.mjs
+          node --check scripts/blog-automation/generate-update-draft.mjs
+          node --check scripts/blog-automation/publish-approved.mjs
+          node --check scripts/blog-automation/finalize-publish.mjs
+      - run: npm run build
