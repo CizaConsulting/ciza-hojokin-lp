@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "astro dev --port 4321",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "blog:monitor": "node scripts/blog-automation/generate-update-draft.mjs",
+    "blog:publish": "node scripts/blog-automation/publish-approved.mjs",
+    "blog:finalize": "node scripts/blog-automation/finalize-publish.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.4.1",
