@@ -72,30 +72,43 @@ function setPropertyIfPresent(properties, schema, names, types, value) {
   }
 }
 
-const [meetingSchema, draftSchema, configRaw] = await Promise.all([
+const [meetingSchema, judgmentSchema, draftSchema, configRaw] = await Promise.all([
   retrieveDataSource(meetingId),
+  retrieveDataSource(judgmentId),
   retrieveDataSource(draftId),
   fs.readFile(configPath, 'utf8'),
 ]);
 
 const tagProperty = findProperty(meetingSchema, ['タグ', '分類', 'テーマ'], 'multi_select');
+const judgmentContextProperty = findProperty(judgmentSchema, ['文脈', 'タグ', 'テーマ'], 'multi_select');
+const siteProperty = findProperty(draftSchema, ['サイト', '投稿先'], 'select');
+if (!judgmentContextProperty) throw new Error('Judgment library must have a multi-select property named 文脈');
+if (!siteProperty) throw new Error('Shared article database must have a select property named サイト');
+
 const meetingQuery = {
   page_size: 30,
   sorts: [{ timestamp: 'created_time', direction: 'descending' }],
 };
 if (tagProperty) meetingQuery.filter = { property: tagProperty, multi_select: { contains: subsidyTag } };
 
+const judgmentQuery = {
+  page_size: 30,
+  filter: { property: judgmentContextProperty, multi_select: { contains: subsidyTag } },
+  sorts: [{ timestamp: 'last_edited_time', direction: 'descending' }],
+};
+
 const [meetingResult, judgmentResult, existingDraftResult] = await Promise.all([
   queryDataSource(meetingId, meetingQuery),
-  queryDataSource(judgmentId, { page_size: 30, sorts: [{ timestamp: 'last_edited_time', direction: 'descending' }] }),
+  queryDataSource(judgmentId, judgmentQuery),
   queryDataSource(draftId, {
     page_size: 100,
-    filter: { property: 'サイト', select: { equals: targetSite } },
+    filter: { property: siteProperty, select: { equals: targetSite } },
     sorts: [{ timestamp: 'created_time', direction: 'descending' }],
   }),
 ]);
 
 if (!meetingResult.results?.length) throw new Error(`No meeting logs found for tag: ${subsidyTag}`);
+if (!judgmentResult.results?.length) throw new Error(`No judgment library entries found for context: ${subsidyTag}`);
 
 const usedMaterialUrls = new Set((existingDraftResult.results || []).map((page) => getPropertyValue(page, '元素材URL')).filter(Boolean));
 const candidateMeetingPages = meetingResult.results.filter((page) => !usedMaterialUrls.has(page.url)).slice(0, 8);
