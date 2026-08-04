@@ -1,5 +1,6 @@
 name: Validate blog automation
 
+# Runs syntax checks and an Astro production build for every automation change.
 on:
   push:
     paths:
