@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "updatedAt": "2026-08-10T00:30:00.000Z",
+  "snapshotMethod": "relevant-text-v1",
+  "sources": {
+    "new-business-manufacturing": {
+      "name": "新事業進出・ものづくり商業サービス補助金 公式サイト",
+      "url": "https://shinjigyou-monodukuri.smrj.go.jp/",
+      "hash": "b89c58cad1d6f2bfba1b9c620f146061466dd5dd3f7d0fcd3cd31285bd7919a4",
+      "content": "第1回公募: 申請受付2026-09-30、応募締切2026-10-30 18:00。2026-07-17公募要領更新・スケジュール変更。",
+      "checkedAt": "2026-08-10T00:30:00.000Z"
+    },
+    "labor-saving-investment": {
+      "name": "中小企業省力化投資補助金 公式サイト",
+      "url": "https://shoryokuka.smrj.go.jp/",
+      "hash": "359398d506055a6f889bda2db304119b775d92e30799e144519cd76f0785edfb",
+      "content": "一般型第7回は2026-07-31 17:00締切。第8回は2026年8月中旬公募開始、9月中旬申請受付、10月中旬締切予定。熊本県被災事業者は第7回受付を8月14日頃まで延長。",
+      "checkedAt": "2026-08-10T00:30:00.000Z"
+    },
+    "digital-ai-support": {
+      "name": "デジタル化・AI導入補助金 公式サイト",
+      "url": "https://it-shien.smrj.go.jp/",
+      "hash": "c4f750dbddeccf032b416de3c3a376ff4ae6e0fcc9c5183567bf367ad07c8292",
+      "content": "2026年新着: 2026-07-24システムメンテナンス案内、07-23交付申請件数・交付決定件数更新、06-26スマートレジ事前登録申請公開終了。",
+      "checkedAt": "2026-08-10T00:30:00.000Z"
+    },
+    "business-succession-ma": {
+      "name": "事業承継・M&A補助金 公式サイト",
+      "url": "https://shoukei-mahojokin.go.jp/",
+      "hash": "6480d702942d91b17ea25ee8530cbee0fb6d2ba784a1db118ebbeec275f6dc41",
+      "content": "最新: 2026-08-04 11次公募実績報告フォーム締切。15次公募は2026-06-19申請受付開始済み。",
+      "checkedAt": "2026-08-10T00:30:00.000Z"
+    },
+    "growth-acceleration": {
+      "name": "中小企業成長加速化補助金 公式サイト",
+      "url": "https://growth-100-oku.smrj.go.jp/",
+      "hash": "698f57875c8873af23246a4074f37aa2d19adc7d737984e151e0fdfd1e5b3710",
+      "content": "2026-08-04 中小企業成長加速化補助金2次公募採択者決定。2026-08-10 100億宣言企業追加公表。2026-08-06 大規模成長投資補助金6次公募開始案内。",
+      "checkedAt": "2026-08-10T00:30:00.000Z"
+    },
+    "tourism-agency-open-calls": {
+      "name": "観光庁 公募情報（2026年）",
+      "url": "https://www.mlit.go.jp/kankocho/kobo_2026_00003.html",
+      "hash": "8bfd06362cf8e934897163cedf61cd3aebfd42fe5dec504f19bb0d0bec1b1d98",
+      "content": "観光庁公募情報の2026年ページを確認対象とする。",
+      "checkedAt": "2026-08-10T00:30:00.000Z"
+    },
+    "osaka-city-business-news": {
+      "name": "大阪市 産業・ビジネス支援のお知らせ",
+      "url": "https://www.city.osaka.lg.jp/sangyo/category/3037-4-0-0-0-0-0-0-0-0.html",
+      "hash": "411e8d8d0119d71a6d25c22421855507ac0d38a010c66ff6dd3b7b2cc50d5c86",
+      "content": "2026-08-07時点の新着はコミュニティビジネス等プロポーザルや市営住宅活用団体募集等。中小・中堅企業向け補助金として記事化対象なし。",
+      "checkedAt": "2026-08-10T00:30:00.000Z"
+    },
+    "large-scale-growth-investment": {
+      "name": "中堅・中小・スタートアップ企業大規模成長投資補助金 公式サイト",
+      "url": "https://chukentou-seichotoushi-hojo.jp/",
+      "hash": "8b96912fce7829894a9dfeab1141c7a1fae915214e913c714d2959abcdf67028",
+      "content": "中堅・中小・スタートアップ企業大規模成長投資補助金 6次公募。2026-08-06開始。100億宣言企業向け類型あり。100億宣言は8月17日までの申請推奨。",
+      "checkedAt": "2026-08-10T00:30:00.000Z"
+    }
+  }
+}
