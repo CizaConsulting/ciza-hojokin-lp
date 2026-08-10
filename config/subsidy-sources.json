@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "dedupePolicy": {
     "rule": "同じ制度・同じ公募回・同じ変更内容は1記事だけ作成する",
     "preferredSourceOrder": [
@@ -93,9 +93,21 @@
       "scope": "公募要領、申請日程、金融機関確認、採択結果、FAQの重要更新"
     },
     {
+      "id": "large-scale-growth-investment",
+      "name": "中堅・中小・スタートアップ企業大規模成長投資補助金 公式サイト",
+      "url": "https://chukentou-seichotoushi-hojo.jp/",
+      "enabled": true,
+      "priority": 1,
+      "role": "primary",
+      "articleEligible": true,
+      "dedupeGroup": "large-scale-growth-investment",
+      "region": "全国",
+      "scope": "公募開始、締切、審査日程、100億宣言企業向け類型、公募要領、採択結果の重要更新"
+    },
+    {
       "id": "tourism-agency-open-calls",
-      "name": "観光庁 公募情報",
-      "url": "https://www.mlit.go.jp/kankocho/kobo.html",
+      "name": "観光庁 公募情報（2026年）",
+      "url": "https://www.mlit.go.jp/kankocho/kobo_2026_00003.html",
       "enabled": true,
       "priority": 2,
       "role": "primary",
