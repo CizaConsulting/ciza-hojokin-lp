@@ -115,7 +115,9 @@ for (const slug of targets) {
       ? canonicalHref.replace(/\/$/, '') === articleUrl.replace(/\/$/, '')
       : false,
     noIndexAbsent: !/noindex/i.test(robotsMetaContent),
-    robotsTxtAllows: robots.status === 200 ? !disallowed : false,
+    // robots.txt が無い(404)場合はクロール全許可を意味するため合格とする。
+    // 取得自体に失敗した場合(status 0 等)は判定できないので不合格にする。
+    robotsTxtAllows: robots.status === 404 || (robots.status === 200 && !disallowed),
     // sitemap 内に同一記事URLが複数現れないこと。
     noDuplicateUrl: sitemapHits.length <= 1,
   };

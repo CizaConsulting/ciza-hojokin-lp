@@ -31,19 +31,27 @@ jobs:
         with:
           node-version: 22
 
-      # このスクリプトは Node 標準APIのみを使用するため依存関係のインストールは不要。
+      # これらのスクリプトは Node 標準APIのみを使用するため依存関係のインストールは不要。
       - name: Fetch official sources and detect changes
         run: node scripts/blog-automation/snapshot-sources.mjs
+
+      # 本番サイトの公開状況を記録する。ルーティンはこれを見て公開処理の可否を決める。
+      # DNS 未設定でも失敗させない（記録することが目的のため）。
+      - name: Record production site status
+        run: node scripts/blog-automation/check-site-status.mjs
+        env:
+          SITE_BASE_URL: https://hojokin.ciza.co.jp
 
       - name: Commit snapshot and detected changes
         shell: bash
         run: |
-          if git diff --quiet -- data/subsidy-source-state.json data/subsidy-source-changes.json; then
+          FILES="data/subsidy-source-state.json data/subsidy-source-changes.json data/site-status.json"
+          if git diff --quiet -- $FILES; then
             echo "変更なし。コミットをスキップします。"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/subsidy-source-state.json data/subsidy-source-changes.json
+          git add $FILES
           git commit -m "補助金公式情報のスナップショットを更新"
           git push origin HEAD:main
