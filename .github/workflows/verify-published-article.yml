@@ -1,0 +1,63 @@
+name: Verify published article
+
+# ルーティン（平日 6:00 JST）は記事を main へ push するが、egress プロキシにより
+# 自社ドメインへ到達できないため、公開後の本番確認を自分で行えない。
+# このワークフローが確認を代行し、結果を data/publish-verification.json へ記録する。
+# ルーティンは次回実行時にそれを読み、合格した記事だけ Notion を「公開済」へ同期する。
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/content/blog/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: subsidy-blog-automation
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          # 直前のコミットとの差分から対象記事を特定するため履歴が必要。
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Vercel の本番反映を待ってから確認する（スクリプト内で 200 が返るまでポーリング）。
+      - name: Verify production
+        id: verify
+        continue-on-error: true
+        env:
+          SITE_BASE_URL: https://hojokin.ciza.co.jp
+        run: node scripts/blog-automation/verify-published.mjs
+
+      - name: Commit verification result
+        shell: bash
+        run: |
+          git add -- data/publish-verification.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "記録すべき変更はありません。"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "本番確認の結果を記録"
+          git push origin HEAD:main
+
+      - name: Fail if verification failed
+        if: steps.verify.outcome == 'failure'
+        run: |
+          echo "本番確認に失敗しました。data/publish-verification.json を確認してください。"
+          echo "Notion は公開済にしないでください。"
+          exit 1
