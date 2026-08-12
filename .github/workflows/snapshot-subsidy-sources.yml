@@ -1,0 +1,49 @@
+name: Snapshot official subsidy sources
+
+# Claude Code のクラウドルーティンは egress プロキシにより官公庁ドメインへ到達できない。
+# そのため「公式ページの取得と差分検出」だけをこのワークフローが担当し、
+# 記事化の判断と Notion への保存はルーティン（平日 6:00 JST）が行う。
+# ルーティンはチェックアウトしたリポジトリの data/subsidy-source-changes.json を読むため、
+# このワークフローはルーティンより前に完了している必要がある。
+on:
+  schedule:
+    # 平日 05:30 JST（= 20:30 UTC の前日）。ルーティン実行の30分前。
+    - cron: '30 20 * * 0-4'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: subsidy-blog-automation
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # このスクリプトは Node 標準APIのみを使用するため依存関係のインストールは不要。
+      - name: Fetch official sources and detect changes
+        run: node scripts/blog-automation/snapshot-sources.mjs
+
+      - name: Commit snapshot and detected changes
+        shell: bash
+        run: |
+          if git diff --quiet -- data/subsidy-source-state.json data/subsidy-source-changes.json; then
+            echo "変更なし。コミットをスキップします。"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/subsidy-source-state.json data/subsidy-source-changes.json
+          git commit -m "補助金公式情報のスナップショットを更新"
+          git push origin HEAD:main
