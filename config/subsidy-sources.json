@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "dedupePolicy": {
     "rule": "同じ制度・同じ公募回・同じ変更内容は1記事だけ作成する",
     "preferredSourceOrder": [
@@ -129,6 +129,17 @@
       "scope": "設備投資、賃上げ、事業承継等に関する中小企業向け税制改正と重要資料の更新"
     },
     {
+      "id": "hyogo-business-support",
+      "name": "兵庫県 しごと・産業（事業者情報）",
+      "url": "https://web.pref.hyogo.lg.jp/jigyoshajoho/work/index.html",
+      "enabled": true,
+      "priority": 10,
+      "role": "local-discovery",
+      "articleEligible": false,
+      "region": "兵庫県",
+      "scope": "兵庫県内事業者向けの設備投資、経営、雇用等の支援制度の発見。記事化時は個別の兵庫県公式ページを出典にする"
+    },
+    {
       "id": "kobe-business-support",
       "name": "神戸市 市内事業者向け支援",
       "url": "https://www.city.kobe.lg.jp/a31812/coronavsupportsforbusiness.html",
@@ -139,6 +150,17 @@
       "dedupeGroup": "kobe-business-support",
       "region": "兵庫県神戸市",
       "scope": "神戸市内事業者向けの補助金・助成金・支援制度の新設、募集開始、締切変更"
+    },
+    {
+      "id": "osaka-pref-business-support",
+      "name": "大阪府 中小企業支援室 経営支援課 事業一覧",
+      "url": "https://www.pref.osaka.lg.jp/o110050/keieishien/ichiran.html",
+      "enabled": true,
+      "priority": 10,
+      "role": "local-discovery",
+      "articleEligible": false,
+      "region": "大阪府",
+      "scope": "大阪府内中小企業向けの補助金、賃上げ、生産性向上、販路開拓等の支援制度の発見。記事化時は個別の大阪府公式ページを出典にする"
     },
     {
       "id": "osaka-city-business-news",
