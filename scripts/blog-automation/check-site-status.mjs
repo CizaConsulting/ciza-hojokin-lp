@@ -9,6 +9,7 @@
 // DNS が修正されればこのスクリプトが自動的に reachable:true を記録し、公開処理が再開する。
 
 import fs from 'node:fs/promises';
+import path from 'node:path';
 
 const siteBaseUrl = (process.env.SITE_BASE_URL || 'https://hojokin.ciza.co.jp').replace(/\/$/, '');
 const outputPath = process.env.SITE_STATUS_OUTPUT || 'data/site-status.json';
@@ -46,6 +47,8 @@ const payload = {
     : `本番サイトへ到達できません（${top.error ?? `HTTP ${top.status}`}）。公開処理は実行しないでください。`,
 };
 
+// 出力先ディレクトリが無いリポジトリでも動くようにする。
+await fs.mkdir(path.dirname(outputPath), { recursive: true });
 await fs.writeFile(outputPath, `${JSON.stringify(payload, null, 2)}\n`);
 console.log(`${siteBaseUrl} reachable=${reachable} top=${top.status} robots=${robots.status}`);
 if (top.error) console.log(`  error: ${top.error}`);

@@ -10,6 +10,7 @@
 
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs/promises';
+import path from 'node:path';
 
 const siteBaseUrl = (process.env.SITE_BASE_URL || 'https://hojokin.ciza.co.jp').replace(/\/$/, '');
 const blogDir = process.env.BLOG_CONTENT_DIR || 'src/content/blog';
@@ -21,9 +22,16 @@ const pollIntervalMs = Number(process.env.VERIFY_POLL_INTERVAL_MS || 20000);
 const requestTimeoutMs = 30000;
 
 function slugsFromLastCommit() {
-  const output = execFileSync('git', ['diff', '--name-only', 'HEAD~1', 'HEAD', '--', blogDir], {
-    encoding: 'utf8',
-  });
+  let output;
+  try {
+    output = execFileSync('git', ['diff', '--name-only', 'HEAD~1', 'HEAD', '--', blogDir], {
+      encoding: 'utf8',
+    });
+  } catch (error) {
+    // 浅いクローンなど HEAD~1 が存在しない場合。slug を明示指定して実行すること。
+    console.error(`直前のコミットとの差分を取得できませんでした: ${error.message}`);
+    return [];
+  }
   return output
     .split('\n')
     .map((line) => line.trim())
@@ -136,6 +144,8 @@ const payload = {
   results,
 };
 
+// 出力先ディレクトリが無いリポジトリでも動くようにする。
+await fs.mkdir(path.dirname(outputPath), { recursive: true });
 await fs.writeFile(outputPath, `${JSON.stringify(payload, null, 2)}\n`);
 
 const failed = results.filter((result) => !result.ok);
