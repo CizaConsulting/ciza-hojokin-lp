@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-12T05:19:33.534Z",
+  "pendingReview": false,
+  "changes": [],
+  "errors": [
+    {
+      "id": "chusho-subsidy-index",
+      "name": "中小企業庁 補助金の公募・採択",
+      "url": "https://www.chusho.meti.go.jp/koukai/hojyokin/index.html",
+      "message": "中小企業庁 補助金の公募・採択: HTTP 403"
+    },
+    {
+      "id": "chusho-tax-support",
+      "name": "中小企業庁 中小企業向け税制",
+      "url": "https://www.chusho.meti.go.jp/zaimu/zeisei/index.html",
+      "message": "中小企業庁 中小企業向け税制: HTTP 403"
+    },
+    {
+      "id": "kobe-business-support",
+      "name": "神戸市 市内事業者向け支援",
+      "url": "https://www.city.kobe.lg.jp/a31812/coronavsupportsforbusiness.html",
+      "message": "神戸市 市内事業者向け支援: HTTP 404"
+    }
+  ]
+}
