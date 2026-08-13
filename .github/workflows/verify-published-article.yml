@@ -11,6 +11,11 @@ on:
     paths:
       - 'src/content/blog/**'
   workflow_dispatch:
+    inputs:
+      slugs:
+        description: 'スペース区切りの slug 一覧（空欄なら直近コミットから自動判定）'
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -40,7 +45,7 @@ jobs:
         continue-on-error: true
         env:
           SITE_BASE_URL: https://hojokin.ciza.co.jp
-        run: node scripts/blog-automation/verify-published.mjs
+        run: node scripts/blog-automation/verify-published.mjs ${{ inputs.slugs }}
 
       - name: Commit verification result
         shell: bash
