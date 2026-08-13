@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "verifiedAt": "2026-08-12T21:10:28.027Z",
+  "verifiedAt": "2026-08-13T01:08:10.882Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "1bd968f8fb63a6871a1df1cacad40129e72a823c",
+  "commit": "4d675cb1be176cbc48a0c726e749ada3dfd08920",
   "results": [
     {
       "slug": "large-growth-subsidy-investment-financing-wage-increase",
@@ -10,14 +10,14 @@
       "status": 200,
       "checks": {
         "articleHttp200": true,
-        "listedOnBlogIndex": false,
-        "inSitemap": false,
+        "listedOnBlogIndex": true,
+        "inSitemap": true,
         "canonicalMatches": true,
         "noIndexAbsent": true,
         "robotsTxtAllows": true,
         "noDuplicateUrl": true
       },
-      "ok": false
+      "ok": true
     }
   ]
 }
