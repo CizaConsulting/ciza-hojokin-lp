@@ -71,12 +71,20 @@ if (targets.length === 0) {
   process.exit(0);
 }
 
+// まず全記事のデプロイ完了を待ってから補助リソースを取得する。
+// 先に sitemap や blogIndex を取得すると、デプロイ前の古い内容でチェックしてしまう。
+const articleData = [];
+for (const slug of targets) {
+  const articleUrl = `${siteBaseUrl}${blogPathPrefix}/${slug}`;
+  const article = await waitForArticle(articleUrl);
+  articleData.push({ slug, articleUrl, article });
+}
+
 const [robots, sitemapIndex] = await Promise.all([
   get(`${siteBaseUrl}/robots.txt`),
   get(`${siteBaseUrl}/sitemap-index.xml`),
 ]);
 
-// sitemap-index.xml が使われている場合は、参照先の sitemap も読み込んで URL を集める。
 let sitemapBody = sitemapIndex.status === 200 ? sitemapIndex.body : '';
 if (sitemapIndex.status !== 200) {
   const plain = await get(`${siteBaseUrl}/sitemap.xml`);
@@ -92,9 +100,7 @@ if (sitemapIndex.status !== 200) {
 const blogIndex = await get(`${siteBaseUrl}${blogPathPrefix}`);
 const results = [];
 
-for (const slug of targets) {
-  const articleUrl = `${siteBaseUrl}${blogPathPrefix}/${slug}`;
-  const article = await waitForArticle(articleUrl);
+for (const { slug, articleUrl, article } of articleData) {
   const html = article.body;
 
   const canonicalMatch = html.match(/<link[^>]+rel=["']canonical["'][^>]*>/i);
