@@ -141,8 +141,8 @@
     },
     {
       "id": "kobe-business-support",
-      "name": "神戸市 市内事業者向け支援",
-      "url": "https://www.city.kobe.lg.jp/a31812/coronavsupportsforbusiness.html",
+      "name": "神戸市 支援制度まとめ",
+      "url": "https://www.city.kobe.lg.jp/shien_topix.html",
       "enabled": true,
       "priority": 10,
       "role": "local-primary",
