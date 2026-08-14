@@ -8,6 +8,8 @@ interface Props {
   schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 const { title, description, canonical, noindex = false, schema } = Astro.props;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const siteTitle = 'CIZA 補助金・支援制度ナビ';
 const pageTitle = title === siteTitle ? title : `${title}｜${siteTitle}`;
 const siteUrl = new URL('/', Astro.site ?? Astro.url).href;
@@ -94,6 +96,7 @@ const structuredData = {
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <meta name="author" content="株式会社シザコンサルティング／川原 拓馬" />
+    {googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
     {noindex && <meta name="robots" content="noindex,nofollow" />}
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
@@ -105,6 +108,12 @@ const structuredData = {
     <link rel="canonical" href={canonicalUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <title>{pageTitle}</title>
+    {gaMeasurementId && (
+      <Fragment>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+        <script is:inline set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${gaMeasurementId}');`} />
+      </Fragment>
+    )}
   </head>
   <body>
     <header class="site-header">
