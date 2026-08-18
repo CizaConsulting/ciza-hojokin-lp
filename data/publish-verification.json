@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-08-13T01:08:10.882Z",
+  "verifiedAt": "2026-08-18T21:10:03.124Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "4d675cb1be176cbc48a0c726e749ada3dfd08920",
+  "commit": "d10337a06ca585316a7f0a855b6752b2fb8684da",
   "results": [
     {
-      "slug": "large-growth-subsidy-investment-financing-wage-increase",
-      "url": "https://hojokin.ciza.co.jp/blog/large-growth-subsidy-investment-financing-wage-increase",
+      "slug": "new-business-manufacturing-subsidy-first-round",
+      "url": "https://hojokin.ciza.co.jp/blog/new-business-manufacturing-subsidy-first-round",
       "status": 200,
       "checks": {
         "articleHttp200": true,
