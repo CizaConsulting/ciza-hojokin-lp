@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-08-18T21:10:03.124Z",
+  "verifiedAt": "2026-08-20T21:11:43.822Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "d10337a06ca585316a7f0a855b6752b2fb8684da",
+  "commit": "458056f54574d882092872a15bf11b36f214d0a9",
   "results": [
     {
-      "slug": "new-business-manufacturing-subsidy-first-round",
-      "url": "https://hojokin.ciza.co.jp/blog/new-business-manufacturing-subsidy-first-round",
+      "slug": "labor-saving-investment-subsidy-general-8th-round",
+      "url": "https://hojokin.ciza.co.jp/blog/labor-saving-investment-subsidy-general-8th-round",
       "status": 200,
       "checks": {
         "articleHttp200": true,
