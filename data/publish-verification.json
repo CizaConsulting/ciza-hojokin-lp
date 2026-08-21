@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-08-20T21:11:43.822Z",
+  "verifiedAt": "2026-08-21T01:54:47.104Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "458056f54574d882092872a15bf11b36f214d0a9",
+  "commit": "8c044863a5b94290a2dd8867e1eebc495fa5ba59",
   "results": [
     {
-      "slug": "labor-saving-investment-subsidy-general-8th-round",
-      "url": "https://hojokin.ciza.co.jp/blog/labor-saving-investment-subsidy-general-8th-round",
+      "slug": "growth-acceleration-subsidy-overview-requirements",
+      "url": "https://hojokin.ciza.co.jp/blog/growth-acceleration-subsidy-overview-requirements",
       "status": 200,
       "checks": {
         "articleHttp200": true,
