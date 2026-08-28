@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "checkedAt": "2026-08-27T00:00:27.842Z",
+  "checkedAt": "2026-08-28T04:26:20.302Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
   "reachable": false,
-  "top": 526,
-  "robotsTxt": 200,
-  "note": "本番サイトへ到達できません（HTTP 526）。公開処理は実行しないでください。"
+  "top": 0,
+  "robotsTxt": 0,
+  "note": "本番サイトへ到達できません（fetch failed）。公開処理は実行しないでください。"
 }
