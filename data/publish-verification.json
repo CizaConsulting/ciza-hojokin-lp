@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-08-21T04:08:29.941Z",
+  "verifiedAt": "2026-09-05T15:08:55.979Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "b48887aefb159ff08f20503d0fb661e95d25c4dd",
+  "commit": "2b72066208b75d377364ab7052390f3177aaf4cc",
   "results": [
     {
-      "slug": "growth-acceleration-subsidy-3rd-round-guidelines",
-      "url": "https://hojokin.ciza.co.jp/blog/growth-acceleration-subsidy-3rd-round-guidelines",
+      "slug": "subsidy-fix-plan-before-applying",
+      "url": "https://hojokin.ciza.co.jp/blog/subsidy-fix-plan-before-applying",
       "status": 200,
       "checks": {
         "articleHttp200": true,
