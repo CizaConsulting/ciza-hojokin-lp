@@ -1,12 +1,27 @@
 {
   "version": 1,
-  "verifiedAt": "2026-09-05T15:08:55.979Z",
+  "verifiedAt": "2026-09-05T15:17:42.198Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "2b72066208b75d377364ab7052390f3177aaf4cc",
+  "commit": "869a63a98f50c6cab9a4846a19b1946a900b6d74",
   "results": [
     {
-      "slug": "subsidy-fix-plan-before-applying",
-      "url": "https://hojokin.ciza.co.jp/blog/subsidy-fix-plan-before-applying",
+      "slug": "subsidy-approvable-plan-vs-executable-plan",
+      "url": "https://hojokin.ciza.co.jp/blog/subsidy-approvable-plan-vs-executable-plan",
+      "status": 200,
+      "checks": {
+        "articleHttp200": true,
+        "listedOnBlogIndex": true,
+        "inSitemap": true,
+        "canonicalMatches": true,
+        "noIndexAbsent": true,
+        "robotsTxtAllows": true,
+        "noDuplicateUrl": true
+      },
+      "ok": true
+    },
+    {
+      "slug": "tourism-industry-efficiency-support-3rd-round",
+      "url": "https://hojokin.ciza.co.jp/blog/tourism-industry-efficiency-support-3rd-round",
       "status": 200,
       "checks": {
         "articleHttp200": true,
