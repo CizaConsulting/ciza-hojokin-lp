@@ -1,27 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-09-05T15:17:42.198Z",
+  "verifiedAt": "2026-09-07T21:09:25.039Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "869a63a98f50c6cab9a4846a19b1946a900b6d74",
+  "commit": "605886b99c54c5ab3bda5dbdf225c54d37ae5a6e",
   "results": [
     {
-      "slug": "subsidy-approvable-plan-vs-executable-plan",
-      "url": "https://hojokin.ciza.co.jp/blog/subsidy-approvable-plan-vs-executable-plan",
-      "status": 200,
-      "checks": {
-        "articleHttp200": true,
-        "listedOnBlogIndex": true,
-        "inSitemap": true,
-        "canonicalMatches": true,
-        "noIndexAbsent": true,
-        "robotsTxtAllows": true,
-        "noDuplicateUrl": true
-      },
-      "ok": true
-    },
-    {
-      "slug": "tourism-industry-efficiency-support-3rd-round",
-      "url": "https://hojokin.ciza.co.jp/blog/tourism-industry-efficiency-support-3rd-round",
+      "slug": "business-succession-ma-subsidy-16th-round",
+      "url": "https://hojokin.ciza.co.jp/blog/business-succession-ma-subsidy-16th-round",
       "status": 200,
       "checks": {
         "articleHttp200": true,
