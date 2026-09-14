@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-09-07T21:09:25.039Z",
+  "verifiedAt": "2026-09-14T21:12:08.386Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "605886b99c54c5ab3bda5dbdf225c54d37ae5a6e",
+  "commit": "5a4a75c6d84faed3e03cb87859502cec3749684e",
   "results": [
     {
-      "slug": "business-succession-ma-subsidy-16th-round",
-      "url": "https://hojokin.ciza.co.jp/blog/business-succession-ma-subsidy-16th-round",
+      "slug": "noto-tourism-recovery-subsidy-2nd-round",
+      "url": "https://hojokin.ciza.co.jp/blog/noto-tourism-recovery-subsidy-2nd-round",
       "status": 200,
       "checks": {
         "articleHttp200": true,
