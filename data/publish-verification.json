@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-09-16T21:11:02.319Z",
+  "verifiedAt": "2026-09-24T21:20:10.281Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "69328216b284b217e5a54c349b608a61ccdcffa7",
+  "commit": "3a1152ca9277129d5128af96fcd8c14b1ed90608",
   "results": [
     {
-      "slug": "labor-saving-investment-subsidy-general-8th-round",
-      "url": "https://hojokin.ciza.co.jp/blog/labor-saving-investment-subsidy-general-8th-round",
+      "slug": "subsidy-bonus-points-prepare-before-applying",
+      "url": "https://hojokin.ciza.co.jp/blog/subsidy-bonus-points-prepare-before-applying",
       "status": 200,
       "checks": {
         "articleHttp200": true,
