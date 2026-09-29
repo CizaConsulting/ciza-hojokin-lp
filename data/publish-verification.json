@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-09-24T21:20:10.281Z",
+  "verifiedAt": "2026-09-29T21:22:41.186Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "3a1152ca9277129d5128af96fcd8c14b1ed90608",
+  "commit": "b33a5ba59bc9961390e94fc107b7b44a92a13f71",
   "results": [
     {
-      "slug": "subsidy-bonus-points-prepare-before-applying",
-      "url": "https://hojokin.ciza.co.jp/blog/subsidy-bonus-points-prepare-before-applying",
+      "slug": "digital-ai-subsidy-smart-register-advance-start",
+      "url": "https://hojokin.ciza.co.jp/blog/digital-ai-subsidy-smart-register-advance-start",
       "status": 200,
       "checks": {
         "articleHttp200": true,
