@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-09-29T21:22:41.186Z",
+  "verifiedAt": "2026-09-30T21:23:39.679Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "b33a5ba59bc9961390e94fc107b7b44a92a13f71",
+  "commit": "ce429ec4388542a32d5d77e465fcf031448b5b63",
   "results": [
     {
-      "slug": "digital-ai-subsidy-smart-register-advance-start",
-      "url": "https://hojokin.ciza.co.jp/blog/digital-ai-subsidy-smart-register-advance-start",
+      "slug": "new-business-subsidy-building-cost-new-market",
+      "url": "https://hojokin.ciza.co.jp/blog/new-business-subsidy-building-cost-new-market",
       "status": 200,
       "checks": {
         "articleHttp200": true,
