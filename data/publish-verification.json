@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-09-30T21:23:39.679Z",
+  "verifiedAt": "2026-10-04T21:23:01.655Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "ce429ec4388542a32d5d77e465fcf031448b5b63",
+  "commit": "381c9a5227d4cb4f416c1751707f6c54215e455e",
   "results": [
     {
-      "slug": "new-business-subsidy-building-cost-new-market",
-      "url": "https://hojokin.ciza.co.jp/blog/new-business-subsidy-building-cost-new-market",
+      "slug": "growth-acceleration-subsidy-3rd-round-guidelines",
+      "url": "https://hojokin.ciza.co.jp/blog/growth-acceleration-subsidy-3rd-round-guidelines",
       "status": 200,
       "checks": {
         "articleHttp200": true,
