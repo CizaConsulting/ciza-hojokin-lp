@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-10-12T21:20:35.991Z",
+  "verifiedAt": "2026-10-22T21:10:33.893Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "f8806a240598b5433742ee32c3619f161f84acad",
+  "commit": "13cadf135877e0ef4892d0edddc348ca5af94823",
   "results": [
     {
-      "slug": "business-succession-ma-subsidy-apply-before-contract",
-      "url": "https://hojokin.ciza.co.jp/blog/business-succession-ma-subsidy-apply-before-contract",
+      "slug": "growth-acceleration-subsidy-3rd-round-declaration-deadline",
+      "url": "https://hojokin.ciza.co.jp/blog/growth-acceleration-subsidy-3rd-round-declaration-deadline",
       "status": 200,
       "checks": {
         "articleHttp200": true,
