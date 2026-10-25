@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-10-22T21:10:33.893Z",
+  "verifiedAt": "2026-10-25T21:12:29.778Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "13cadf135877e0ef4892d0edddc348ca5af94823",
+  "commit": "304acdf901795aad8334deda571dd586d39ccd99",
   "results": [
     {
-      "slug": "growth-acceleration-subsidy-3rd-round-declaration-deadline",
-      "url": "https://hojokin.ciza.co.jp/blog/growth-acceleration-subsidy-3rd-round-declaration-deadline",
+      "slug": "growth-subsidy-wage-regional-impact-small-firms",
+      "url": "https://hojokin.ciza.co.jp/blog/growth-subsidy-wage-regional-impact-small-firms",
       "status": 200,
       "checks": {
         "articleHttp200": true,
