@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-10-25T21:12:29.778Z",
+  "verifiedAt": "2026-10-26T21:11:06.944Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "304acdf901795aad8334deda571dd586d39ccd99",
+  "commit": "d49f02f146a82addc42b8f65392ebdbb2667ada8",
   "results": [
     {
-      "slug": "growth-subsidy-wage-regional-impact-small-firms",
-      "url": "https://hojokin.ciza.co.jp/blog/growth-subsidy-wage-regional-impact-small-firms",
+      "slug": "labor-saving-investment-subsidy-general-9th-round-schedule",
+      "url": "https://hojokin.ciza.co.jp/blog/labor-saving-investment-subsidy-general-9th-round-schedule",
       "status": 200,
       "checks": {
         "articleHttp200": true,
