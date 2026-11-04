@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-10-26T21:11:06.944Z",
+  "verifiedAt": "2026-11-04T21:09:16.833Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "d49f02f146a82addc42b8f65392ebdbb2667ada8",
+  "commit": "04eb78c1ec92e6f48c2aa7aa5a9a14cea0032ae6",
   "results": [
     {
-      "slug": "labor-saving-investment-subsidy-general-9th-round-schedule",
-      "url": "https://hojokin.ciza.co.jp/blog/labor-saving-investment-subsidy-general-9th-round-schedule",
+      "slug": "digital-ai-subsidy-smart-pos-register-category-2026",
+      "url": "https://hojokin.ciza.co.jp/blog/digital-ai-subsidy-smart-pos-register-category-2026",
       "status": 200,
       "checks": {
         "articleHttp200": true,
