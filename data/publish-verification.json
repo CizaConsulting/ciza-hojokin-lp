@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-11-04T21:09:16.833Z",
+  "verifiedAt": "2026-11-05T21:11:54.913Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "04eb78c1ec92e6f48c2aa7aa5a9a14cea0032ae6",
+  "commit": "48650bc2ee625138410504a4053b830b48914adf",
   "results": [
     {
-      "slug": "digital-ai-subsidy-smart-pos-register-category-2026",
-      "url": "https://hojokin.ciza.co.jp/blog/digital-ai-subsidy-smart-pos-register-category-2026",
+      "slug": "new-business-manufacturing-subsidy-2nd-round",
+      "url": "https://hojokin.ciza.co.jp/blog/new-business-manufacturing-subsidy-2nd-round",
       "status": 200,
       "checks": {
         "articleHttp200": true,
