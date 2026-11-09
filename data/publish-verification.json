@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-11-05T21:11:54.913Z",
+  "verifiedAt": "2026-11-09T21:12:50.795Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "48650bc2ee625138410504a4053b830b48914adf",
+  "commit": "5d59924bbc99a7bc59f27d74b6d7d577a45bc03e",
   "results": [
     {
-      "slug": "new-business-manufacturing-subsidy-2nd-round",
-      "url": "https://hojokin.ciza.co.jp/blog/new-business-manufacturing-subsidy-2nd-round",
+      "slug": "subsidy-eligible-investment-vs-program-purpose",
+      "url": "https://hojokin.ciza.co.jp/blog/subsidy-eligible-investment-vs-program-purpose",
       "status": 200,
       "checks": {
         "articleHttp200": true,
