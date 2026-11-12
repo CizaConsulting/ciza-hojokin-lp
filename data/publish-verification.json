@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-11-11T21:11:27.809Z",
+  "verifiedAt": "2026-11-12T21:08:09.590Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "acde0eef50812863090a6e43705f6cf4e0a75d7b",
+  "commit": "e54ac68c650f2fa5a1e46abcdd986b91c43ba023",
   "results": [
     {
-      "slug": "digital-ai-subsidy-grant-application-final-deadline-2026",
-      "url": "https://hojokin.ciza.co.jp/blog/digital-ai-subsidy-grant-application-final-deadline-2026",
+      "slug": "labor-saving-investment-subsidy-general-9th-round-schedule",
+      "url": "https://hojokin.ciza.co.jp/blog/labor-saving-investment-subsidy-general-9th-round-schedule",
       "status": 200,
       "checks": {
         "articleHttp200": true,
