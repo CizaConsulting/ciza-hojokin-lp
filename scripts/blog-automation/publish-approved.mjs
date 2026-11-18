@@ -73,7 +73,8 @@ if (!slugIsSafe(slug)) throw new Error(`Missing or unsafe slug: ${slug}`);
 let body = blocksToMarkdown(await getAllBlocks(page.id)).trim();
 body = body.replace(/^---\n[\s\S]*?\n---\n?/, '').trim();
 body = body.replace(/\n## 出典・情報確認日[\s\S]*$/m, '').trim();
-if (!body.startsWith('# ')) body = `# ${title}\n\n${body}`;
+// H1 はテンプレートが title から出すので本文には付けない（付いていても astro.config.mjs の remark プラグインで除去される）
+body = body.replace(/^# .*\n+/, '').trim();
 
 const paragraph = body
   .split(/\n\s*\n/)
