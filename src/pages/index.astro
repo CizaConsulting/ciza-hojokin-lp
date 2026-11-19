@@ -1,7 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  { q: 'まだ計画が固まっていなくても相談できますか。', a: 'はい。設備の候補、投資規模、実施時期が概算でも構いません。まず何を確認すべきか一緒に考えます。' },
+  { q: '小規模な投資でも対象ですか。', a: 'ご相談いただけます。ただし、投資規模によっては補助金より税制優遇や融資を使う方がよい場合もあります。' },
+  { q: '無料診断後に契約を求められますか。', a: '必ず契約いただく必要はありません。当社の支援が必要で、お役に立てる場合のみ内容と費用をご案内します。' },
+  { q: '何を準備すればよいですか。', a: '予定している投資の内容、概算金額、実施時期が分かれば十分です。見積書や事業計画がある場合は面談時に確認します。' },
+  { q: '採択されるか分かりますか。', a: '採択を約束することはできませんが、制度の対象になりそうか、申請に向けて何が足りないかはお伝えできます。' },
+  { q: '費用はどのくらいかかりますか。', a: '申請のご支援は、着手金と、採択されたときの成功報酬の形です。金額は制度と支援内容によって変わるため、面談のあとに個別にご案内します。採択後の手続きのご支援は別途お見積りします。' },
+  { q: '途中の段階からでも頼めますか。', a: 'はい。事業計画書の見直しだけ、採択後の手続きだけ、といったご相談にも対応します。' },
+  { q: '採択後の手続きだけでも頼めますか。', a: 'はい。交付申請や実績報告は書類が多く、期限もあります。採択の通知を受けたら、早めにご相談ください。' },
+];
+
+const faqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title="CIZA 補助金・支援制度ナビ" description="設備投資や新規事業について、使えそうな補助金に加え、税制優遇や融資、資金繰りも含めてご案内します。">
+<BaseLayout title="CIZA 補助金・支援制度ナビ" description="設備投資や新規事業について、使えそうな補助金に加え、税制優遇や融資、資金繰りも含めてご案内します。" schema={faqSchema}>
   <section class="hero">
     <div class="container hero-grid">
       <div>
@@ -71,6 +91,66 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <section class="section" id="service">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">ご支援の内容</p>
+        <h2>申請前から採択後まで、段階ごとに支援します</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <span class="number">01</span><h3>申請前：制度選びと計画の整理</h3>
+          <p>投資の内容と時期を伺い、補助金・税制・融資のどれを使うかを整理します。発注や契約の前に確認すべきことも、この段階でお伝えします。</p>
+        </div>
+        <div class="card">
+          <span class="number">02</span><h3>申請：事業計画書のブラッシュアップ</h3>
+          <p>事業計画書は会社が主体となって作り、私たちは内容を磨き上げる支援をします。審査で何が見られるかを踏まえ、数字と根拠の整合性を確かめます。電子申請は、申請者ご自身のアカウントで行っていただきます。</p>
+        </div>
+        <div class="card">
+          <span class="number">03</span><h3>採択後：交付申請・実績報告などの手続き</h3>
+          <p>採択されても、補助金はすぐには入りません。交付申請、事業の実施、実績報告を経て、ようやく入金されます。この手続きと、入金までの資金繰りのご相談にも対応します。</p>
+        </div>
+      </div>
+      <div class="fee-box">
+        <h3>費用の考え方</h3>
+        <ul class="checklist">
+          <li>30分のWeb面談は無料です。</li>
+          <li>申請のご支援は、着手金と、採択されたときの成功報酬をいただく形です。採択後の手続きのご支援は別途お見積りします。金額は制度と支援内容によって変わるため、面談のあとに個別にご案内します。</li>
+          <li>着手金をいただくのは、計画を本気で進める会社と一緒に取り組みたいからです。採択が見込めない場合は、着手金をいただく前にその旨をお伝えします。</li>
+          <li>小規模な販路開拓の補助金などは、要点をお伝えしたうえで、ご自身での申請をお勧めすることもあります。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="fit">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">向いている会社</p>
+        <h2>こんな会社のご相談をお受けしています</h2>
+      </div>
+      <div class="grid-2 align-start">
+        <div class="card">
+          <h3>ご相談をお受けしている会社</h3>
+          <ul class="checklist">
+            <li><strong>補助金がなくても取り組みたい設備投資や新事業がある</strong></li>
+            <li><strong>外部の知見も借りて、事業計画そのものを磨き上げたい</strong><br>コンサルティングファーム出身者、元銀行員、ベンチャー企業でバックオフィスを率いてきた者が担当します。伺った内容を書き起こすだけでなく、ビジネスプランそのものの見直しや資金調達まで含めて助言します。</li>
+            <li><strong>投資額や時期だけでなく、補助金が入るまでの資金繰りまで考えておきたい</strong></li>
+            <li><strong>採択後の手続きまで見通しを持って進めたい</strong><br>これまで300件を超える採択を支援し、採択後の手続きから事業化状況の報告まで一貫して伴走してきました。採択後に何が起きるかを踏まえて、申請前から助言します。</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>お役に立てないことが多いケース</h3>
+          <ul class="xlist">
+            <li>「補助金が出るなら何か始めたい」という、補助金ありきのご相談</li>
+            <li>すでに発注や契約を済ませている投資（多くの制度では、交付決定前に発注・契約したものは補助の対象外です）</li>
+            <li>事業計画書の作成を丸ごと任せたい場合（計画は会社が主体となって作る必要があります）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
       <div class="section-head">
@@ -100,7 +180,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="section alt">
+  <section class="section alt" id="cases">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">ご支援の例</p>
+        <h2>補助金を、その後の事業につなげた会社</h2>
+        <p class="lead">採択はゴールではありません。補助金をきっかけに、事業や組織が変わった例をご紹介します。</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>新規事業が、本業を上回るまでに</h3>
+          <p>コロナで既存事業の売上が大きく落ち込んだ会社です。事業再構築補助金を使って新規事業を立ち上げ、いまでは新規事業の売上と利益が、既存事業を上回っています。</p>
+        </div>
+        <div class="card">
+          <h3>老舗の鉄工所が、ITサービスを立ち上げる</h3>
+          <p>創業100年を超える鉄工所の後継社長が、事業再構築補助金を使って、鉄工所と発注者をつなぐマッチングサービスを開発しました。社長は「補助金のいちばんの価値は、お金よりも事業計画をつくる過程にあった」と振り返ります。</p>
+        </div>
+        <div class="card">
+          <h3>「買いたいものもない」から、成長計画へ</h3>
+          <p>「情報を知ってチャレンジしたいが、やりたいことは決まっていない」という状態からのご相談でした。約8回の討議で業界全体のボトルネックを見つけ、その解消に正面から取り組む成長計画をつくり、倍率6.1倍の中小企業成長加速化補助金に採択されました。</p>
+        </div>
+        <div class="card">
+          <h3>計画づくりを、幹部教育の場に</h3>
+          <p>申請のたびに、育てたい若手を担当者に指名している会社があります。外部の伴走を受けながら、ビジネスモデルや数値計画を自分たちで組み立てる過程そのものを、幹部教育として活用しています。</p>
+        </div>
+      </div>
+      <p class="small-note">※ 企業の特定を避けるため、社名は伏せています。</p>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <div class="section-head">
         <p class="eyebrow">無料Web診断の流れ</p>
@@ -114,23 +223,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="section">
+  <section class="section alt">
     <div class="container faq-wrap">
       <div class="section-head">
         <p class="eyebrow">よくある質問</p>
         <h2>相談前のご不安にお答えします</h2>
       </div>
       <div class="faq-list">
-        <details open><summary>まだ計画が固まっていなくても相談できますか。</summary><p>はい。設備の候補、投資規模、実施時期が概算でも構いません。まず何を確認すべきか一緒に考えます。</p></details>
-        <details><summary>小規模な投資でも対象ですか。</summary><p>ご相談いただけます。ただし、投資規模によっては補助金より税制優遇や融資を使う方がよい場合もあります。</p></details>
-        <details><summary>無料診断後に契約を求められますか。</summary><p>必ず契約いただく必要はありません。当社の支援が必要で、お役に立てる場合のみ内容と費用をご案内します。</p></details>
-        <details><summary>何を準備すればよいですか。</summary><p>予定している投資の内容、概算金額、実施時期が分かれば十分です。見積書や事業計画がある場合は面談時に確認します。</p></details>
-        <details><summary>採択されるか分かりますか。</summary><p>採択を約束することはできませんが、制度の対象になりそうか、申請に向けて何が足りないかはお伝えできます。</p></details>
+        {faqs.map((f, i) => (
+          <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>
+        ))}
       </div>
     </div>
   </section>
 
-  <section class="section alt">
+  <section class="section">
     <div class="container cta">
       <div><h2>具体的な計画がある方へ</h2><p>30分のWeb面談で、使えそうな制度と次にすることを確認します。</p></div>
       <a class="button" href="/consultation/">無料Web診断を申し込む</a>

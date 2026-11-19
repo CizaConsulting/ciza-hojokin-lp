@@ -143,6 +143,11 @@ th{background:#eef4f7;color:var(--navy);width:26%}
 .article-author img{width:180px;aspect-ratio:3/2;object-fit:cover;border-radius:10px}
 .article-author h2{font-size:25px;margin-bottom:8px}
 .article-author p{font-size:15px;color:var(--muted)}
+.fee-box{margin-top:28px;padding:28px;background:var(--light);border:1px solid var(--line);border-radius:14px}
+.fee-box h3{margin-top:0}
+.xlist{list-style:none;padding:0;margin:0}
+.xlist li{position:relative;padding-left:28px;margin:10px 0;color:var(--muted)}
+.xlist li:before{content:"×";position:absolute;left:0;color:var(--accent);font-weight:800}
 @media(max-width:800px){
  .container{width:min(100% - 28px,1120px)}
  .nav a:not(.button){display:none}
