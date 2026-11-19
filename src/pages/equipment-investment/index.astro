@@ -1,11 +1,45 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const faqs = [
+  { q: 'もう設備を発注してしまいました。補助金は使えますか。', a: '多くの補助金では、交付決定より前に発注・契約したものは対象外です。ただ、制度によっては事前着手が認められる場合や、税制優遇なら使える場合もあります。あきらめる前に、発注日と契約内容をお知らせください。' },
+  { q: 'まだ買う設備が決まっていなくても相談できますか。', a: 'はい。どの工程が詰まっているのか、何を増やしたいのかを伺うところから始めます。設備が決まる前のほうが、制度に合わせた進め方を選びやすくなります。' },
+  { q: '補助金はいつ入金されますか。', a: '多くの補助金は後払いです。設備の支払いを終え、実績報告と検査を経てから入金されるため、発注から入金まで1年近くかかることもあります。その間の資金を自己資金でまかなうか、つなぎ融資を使うかを、申請前に決めておきます。' },
+  { q: '補助金と税制優遇は一緒に使えますか。', a: '組み合わせられる場合もありますが、補助金を受けた部分の会計処理など、確認すべき点があります。顧問税理士の先生とも相談しながら、有利な組み合わせを検討します。' },
+  { q: '融資の相談もできますか。', a: 'はい。チームには元銀行員もいます。金融機関にどう説明するか、補助金が入るまでのつなぎ資金をどうするかも含めてご相談いただけます。' },
+  { q: '採択後の手続きも頼めますか。', a: 'はい。交付申請、発注、実績報告、事業化状況の報告まで、採択後の流れを見通してご支援します。' },
+];
+
+const faqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title="設備投資・機械購入の補助金と税制優遇" description="設備・機械を購入する前に確認したい補助金、税制優遇、融資、資金繰りについてご案内します。">
-  <div class="page-hero"><div class="container prose"><p class="eyebrow">設備・機械を導入する前に</p><h1>設備を発注する前に、補助金・税制・融資を確認</h1><p class="lead">購入する設備、金額、導入時期を伺い、使えそうな補助金があるか、税制優遇や融資も含めて確認します。</p></div></div>
+<BaseLayout title="設備投資・機械購入の補助金と税制優遇" description="設備・機械を購入する前に確認したい補助金、税制優遇、融資、資金繰りについて。よくある落とし穴、ご支援の流れ、事例、よくある質問をまとめています。" schema={faqSchema}>
+  <div class="page-hero"><div class="container prose"><p class="eyebrow">設備・機械を導入する前に</p><h1>設備を発注する前に、補助金・税制・融資を確認</h1><p class="lead">購入する設備、金額、導入時期を伺い、使えそうな補助金があるか、税制優遇や融資も含めて確認します。設備がまだ決まっていない段階でもご相談いただけます。</p></div></div>
+
   <section class="section"><div class="container prose">
     <h2>発注してからでは間に合わない制度があります</h2>
     <p>設備投資に使える制度の中には、申請や認定より先に発注・契約すると対象外になるものがあります。設備を決めたら、型式、見積額、発注予定日、導入目的を確認し、発注前に必要な手続きがないかを調べます。</p>
+    <p>また、補助金は「採択されたら終わり」ではありません。採択のあとに交付申請、発注、支払い、実績報告と続き、入金はそのあとです。申請の時点で、採択後の段取りまで見通しておくことが大切です。</p>
+  </div></section>
+
+  <section class="section alt"><div class="container">
+    <div class="section-head"><p class="eyebrow">主な制度</p><h2>設備投資で検討することが多い制度</h2><p class="lead">投資の目的と規模によって、合う制度が変わります。</p></div>
+    <div class="grid-2">
+      <div class="card"><h3>中小企業省力化投資補助金</h3><p>人手不足の解消につながる設備やシステムの導入が対象です。製品カタログから選ぶ型と、自社に合わせた設備を個別に申請する型があります。</p></div>
+      <div class="card"><h3>新事業進出・ものづくり商業サービス補助金</h3><p>新しい製品・サービスの開発や、生産工程の大きな改善に伴う設備投資が対象です。新市場への進出を伴う事業にも使えます。</p></div>
+      <div class="card"><h3>中小企業成長加速化補助金</h3><p>売上高100億円を目指す企業の、工場や大型設備などへの投資が対象です。投資額が大きく、賃上げや地域への波及効果まで問われます。</p></div>
+      <div class="card"><h3>税制優遇・融資</h3><p>設備によっては即時償却や税額控除が使えます。補助金の対象にならない投資でも、税制や融資で負担を軽くできる場合があります。</p></div>
+    </div>
+    <p class="small-note">※ 制度の名称や要件、募集時期は公募回ごとに変わります。最新の公募要領を確認したうえでご案内します。</p>
+  </div></section>
+
+  <section class="section"><div class="container prose">
     <h2>補助金だけでなく、支払いまで考える必要があります</h2>
     <div class="grid-2">
       <div class="card"><h3>補助金</h3><p>設備費の一部が補助される制度です。募集時期、対象となる設備、審査、支払い後の入金などを確認します。</p></div>
@@ -13,9 +47,61 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="card"><h3>融資・資金調達</h3><p>多くの補助金は後払いです。設備代金を先に支払えるか、融資が必要かを確認します。</p></div>
       <div class="card"><h3>投資に見合う効果</h3><p>補助金が使えるかだけでなく、売上や粗利がどれだけ増えるか、人手や時間をどれだけ減らせるかも考えます。</p></div>
     </div>
+  </div></section>
+
+  <section class="section alt"><div class="container prose">
+    <h2>設備投資の補助金で、よくある落とし穴</h2>
+    <ul class="xlist">
+      <li><strong>交付決定の前に発注・契約してしまう。</strong>多くの制度で対象外になります。見積もりは取っても、発注は待ってください。</li>
+      <li><strong>補助金が入るまでの資金を用意していない。</strong>設備代金はいったん全額を支払います。入金までの資金繰りを申請前に決めておきます。</li>
+      <li><strong>採択後に、設備や設置場所を変えたくなる。</strong>採択後の変更は簡単には認められません。申請の時点で、設備・場所・スケジュールを固めておきます。</li>
+      <li><strong>賃上げなどの要件を、申請後に守れなくなる。</strong>要件を満たせないと、補助金の返還を求められる制度もあります。続けられる計画かどうかを先に確認します。</li>
+      <li><strong>「補助金で買えるもの」から設備を選んでしまう。</strong>本当に必要な投資かどうかが先です。制度に合わせて投資を決めると、導入後に使われない設備が残ります。</li>
+    </ul>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="section-head"><p class="eyebrow">ご支援の流れ</p><h2>相談から、導入後の報告まで</h2></div>
+    <div class="grid-3">
+      <div class="card"><p class="number">01</p><h3>投資内容と資金の確認</h3><p>何のための投資か、いくらかかり、いつ支払うのかを伺います。使えそうな補助金・税制・融資を洗い出します。</p></div>
+      <div class="card"><p class="number">02</p><h3>事業計画と申請</h3><p>投資の効果を、売上・利益・作業時間などの数字で説明できる計画にまとめます。計画は社長と一緒につくります。</p></div>
+      <div class="card"><p class="number">03</p><h3>採択後の手続き</h3><p>交付申請、発注、支払い、実績報告、その後の事業化状況の報告まで、期限を見ながら進めます。</p></div>
+    </div>
+  </div></section>
+
+  <section class="section alt"><div class="container">
+    <div class="section-head"><p class="eyebrow">ご支援の例</p><h2>設備投資を、会社の成長につなげた例</h2></div>
+    <div class="grid-2">
+      <div class="card"><h3>「買いたいものもない」から、成長計画へ</h3><p>「情報を知ってチャレンジしたいが、やりたいことは決まっていない」という状態からのご相談でした。約8回の討議で業界全体のボトルネックを見つけ、その解消に正面から取り組む成長計画をつくり、倍率6.1倍の中小企業成長加速化補助金に採択されました。</p></div>
+      <div class="card"><h3>計画づくりを、幹部教育の場に</h3><p>申請のたびに、育てたい若手を担当者に指名している会社があります。外部の伴走を受けながら、ビジネスモデルや数値計画を自分たちで組み立てる過程そのものを、幹部教育として活用しています。</p></div>
+    </div>
+    <p class="small-note">※ 企業の特定を避けるため、社名は伏せています。</p>
+  </div></section>
+
+  <section class="section"><div class="container prose">
+    <h2>あわせて読みたい</h2>
+    <ul class="checklist">
+      <li><a href="/blog/subsidy-financing-before-investment/">補助金を使う設備投資は、採択前から資金繰りを考える</a></li>
+      <li><a href="/blog/subsidy-fix-plan-before-applying/">補助金は「採択後に変えられない」前提で申請する</a></li>
+      <li><a href="/blog/subsidy-eligible-investment-vs-program-purpose/">補助金で対象にならない投資とは</a></li>
+      <li><a href="/blog/labor-saving-investment-subsidy-general-9th-round-schedule/">中小企業省力化投資補助金 一般型 第9回公募</a></li>
+      <li><a href="/blog/growth-acceleration-subsidy-overview-requirements/">中小企業成長加速化補助金（100億宣言）とは</a></li>
+    </ul>
     <h2>ご相談の前に分かるとよいこと</h2>
     <ul class="checklist"><li>設備の名称・型式・見積額</li><li>何のために導入するのか</li><li>発注・納品・支払いの予定時期</li><li>自己資金で足りるか、融資が必要か</li><li>導入後に売上や作業時間がどう変わるか</li></ul>
-    <div class="notice">使える制度は、設備の内容、会社の状況、発注時期によって変わります。発注前に最新の公募要領などを確認することが大切です。</div>
+    <div class="notice">すべてそろっていなくても大丈夫です。分かる範囲で伺い、足りない情報は一緒に整理します。</div>
   </div></section>
-  <section class="section alt"><div class="container cta"><div><h2>設備を発注する前に確認しませんか</h2><p>30分のWeb面談で、使えそうな制度と、発注前にしておくことを確認します。</p></div><a class="button" href="/consultation/">無料Web診断を申し込む</a></div></section>
+
+  <section class="section alt">
+    <div class="container faq-wrap">
+      <div class="section-head"><p class="eyebrow">よくある質問</p><h2>設備投資の補助金について</h2></div>
+      <div class="faq-list">
+        {faqs.map((f, i) => (
+          <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section"><div class="container cta"><div><h2>設備が決まる前から、ご相談ください</h2><p>30分のWeb面談で、使えそうな制度と、発注前にしておくことを一緒に確認します。</p></div><a class="button" href="/consultation/">無料Web診断を申し込む</a></div></section>
 </BaseLayout>

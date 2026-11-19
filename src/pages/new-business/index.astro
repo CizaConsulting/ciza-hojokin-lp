@@ -1,11 +1,45 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const faqs = [
+  { q: 'まだアイデアの段階ですが、相談できますか。', a: 'はい。誰に何を売るのか、今の事業の強みをどう生かすのかを伺いながら、事業として成り立つかを一緒に考えます。補助金の要件が、構想を詰めるきっかけになることもあります。' },
+  { q: '今の事業に近い新規事業でも、補助金の対象になりますか。', a: '制度ごとに「新しさ」の基準があります。製品やサービス、お客様、市場のどこが今の事業と違うのかによって、使える制度が変わります。構想を伺ったうえで判断します。' },
+  { q: '建物の建設や改修にも使えますか。', a: '建物費が対象になる制度もありますが、新しい事業に必要な建物であることなど、要件があります。対象になる範囲を、申請前に確認しておくことが大切です。' },
+  { q: '事業計画書は書いてもらえますか。', a: 'ヒアリングをもとに、社長と一緒に計画をつくります。社長の考えが入っていない計画は、採択されても実行できないためです。書き起こすだけでなく、ビジネスプランそのものの見直しや資金調達も含めて助言します。' },
+  { q: '新規事業の立ち上げ資金は、補助金だけで足りますか。', a: '多くの場合、足りません。補助金は後払いで、補助率も一部です。人の採用、広告、在庫、軌道に乗るまでの赤字も含めて必要な資金を見積もり、自己資金と融資の組み合わせを考えます。' },
+  { q: '採択後の手続きも頼めますか。', a: 'はい。交付申請、実績報告、事業化状況の報告まで、採択後の流れを見通してご支援します。' },
+];
+
+const faqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
-<BaseLayout title="新規事業・新商品に使える補助金と資金調達" description="新規事業、新商品、新店舗、異業種進出で確認したい補助金、売上計画、必要資金、融資についてご案内します。">
-  <div class="page-hero"><div class="container prose"><p class="eyebrow">新商品・新サービス・新店舗・異業種進出</p><h1>新規事業を始める前に、使える制度と必要なお金を確認</h1><p class="lead">補助金があるかだけでなく、誰に売るのか、どれくらい売れそうか、いくら必要か、融資が必要かまで一緒に考えます。</p></div></div>
+<BaseLayout title="新規事業・新商品に使える補助金と資金調達" description="新規事業、新商品、新店舗、異業種進出で確認したい補助金、売上計画、必要資金、融資について。よくある落とし穴、事例、よくある質問をまとめています。" schema={faqSchema}>
+  <div class="page-hero"><div class="container prose"><p class="eyebrow">新商品・新サービス・新店舗・異業種進出</p><h1>新規事業を始める前に、使える制度と必要なお金を確認</h1><p class="lead">補助金があるかだけでなく、誰に売るのか、どれくらい売れそうか、いくら必要か、融資が必要かまで一緒に考えます。構想がまだ固まっていない段階でもご相談いただけます。</p></div></div>
+
   <section class="section"><div class="container prose">
     <h2>補助金に合わせて事業を作らない</h2>
     <p>補助金があるから新規事業を始めるのではなく、まず事業として成り立つかを考える必要があります。誰に何を売るのか、今の事業と何が違うのか、どれくらい売れそうか、立ち上げにいくらかかるかを確認したうえで、使える制度を探します。</p>
+    <p>一方で、補助金の公募をきっかけに、温めていた構想を本気で詰める会社も少なくありません。審査で問われる市場性や収益性、実現可能性は、事業を立ち上げるときにどのみち考えなければならないことです。申請を、事業計画を磨く機会として使っていただけます。</p>
+  </div></section>
+
+  <section class="section alt"><div class="container">
+    <div class="section-head"><p class="eyebrow">主な制度</p><h2>新規事業で検討することが多い制度</h2><p class="lead">事業の新しさと投資の規模によって、合う制度が変わります。</p></div>
+    <div class="grid-2">
+      <div class="card"><h3>新事業進出・ものづくり商業サービス補助金</h3><p>今の事業とは異なる製品・サービスで、新しい市場に進出する事業が対象です。設備だけでなく、建物費が対象になる場合もあります。</p></div>
+      <div class="card"><h3>中小企業成長加速化補助金</h3><p>売上高100億円を目指す企業の、大型投資が対象です。新規事業を成長の柱にする計画にも使えます。</p></div>
+      <div class="card"><h3>事業承継・M&A補助金</h3><p>M&Aで他社の事業を引き継ぎ、新しい分野に進出する場合に、専門家への費用などが対象になります。契約のタイミングに注意が必要です。</p></div>
+      <div class="card"><h3>融資・自治体の制度</h3><p>新事業向けの融資や、自治体独自の補助金もあります。補助金の対象にならない費用や、入金までのつなぎ資金を含めて考えます。</p></div>
+    </div>
+    <p class="small-note">※ 制度の名称や要件、募集時期は公募回ごとに変わります。最新の公募要領を確認したうえでご案内します。</p>
+  </div></section>
+
+  <section class="section"><div class="container prose">
     <h2>ご相談で確認すること</h2>
     <div class="grid-2">
       <div class="card"><h3>誰に、何を売るのか</h3><p>想定しているお客様と、その商品・サービスを選んでもらえる理由を確認します。</p></div>
@@ -13,9 +47,52 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       <div class="card"><h3>必要なお金</h3><p>設備だけでなく、人の採用、広告、在庫、事業が軌道に乗るまでの赤字も含めて考えます。</p></div>
       <div class="card"><h3>補助金と融資</h3><p>使えそうな補助金があるか、補助金が入るまでに自己資金や融資がどれくらい必要かを確認します。</p></div>
     </div>
+  </div></section>
+
+  <section class="section alt"><div class="container prose">
+    <h2>新規事業の補助金で、よくある落とし穴</h2>
+    <ul class="xlist">
+      <li><strong>今の事業との違いを説明できない。</strong>「新しさ」の要件を満たさないと、審査の前に対象外になります。製品・お客様・市場のどこが新しいのかを整理します。</li>
+      <li><strong>売上計画に根拠がない。</strong>「これくらい売れるはず」では審査も金融機関も納得しません。顧客数や単価を、聞き取りや試験販売などの裏付けとあわせて組み立てます。</li>
+      <li><strong>建物や設備が、対象になると思い込んでいる。</strong>建物費には要件があり、対象外の費用もあります。申請前に、何が対象になるかを確認します。</li>
+      <li><strong>軌道に乗るまでの赤字と資金繰りを見ていない。</strong>新規事業は、売上が立つまでに時間がかかります。補助金の入金時期も含めた資金計画が必要です。</li>
+      <li><strong>採択後に、事業の中身を変えたくなる。</strong>採択後の大きな変更は認められにくく、賃上げなどの要件を守れないと返還を求められる制度もあります。</li>
+    </ul>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="section-head"><p class="eyebrow">ご支援の例</p><h2>補助金で始めた事業が、会社の柱になった例</h2></div>
+    <div class="grid-2">
+      <div class="card"><h3>新規事業が、本業を上回るまでに</h3><p>コロナで既存事業の売上が大きく落ち込んだ会社です。事業再構築補助金を使って新規事業を立ち上げ、いまでは新規事業の売上と利益が、既存事業を上回っています。</p></div>
+      <div class="card"><h3>老舗の鉄工所が、ITサービスを立ち上げる</h3><p>創業100年を超える鉄工所の後継社長が、事業再構築補助金を使って、鉄工所と発注者をつなぐマッチングサービスを開発しました。社長は「補助金のいちばんの価値は、お金よりも事業計画をつくる過程にあった」と振り返ります。</p></div>
+    </div>
+    <p class="small-note">※ 企業の特定を避けるため、社名は伏せています。</p>
+  </div></section>
+
+  <section class="section alt"><div class="container prose">
+    <h2>あわせて読みたい</h2>
+    <ul class="checklist">
+      <li><a href="/blog/new-business-subsidy-building-cost-new-market/">新事業進出補助金 建物費の注意点｜新市場・新規性の線引き</a></li>
+      <li><a href="/blog/new-business-manufacturing-subsidy-2nd-round/">新事業進出・ものづくり商業サービス補助金 第2回公募</a></li>
+      <li><a href="/blog/subsidy-approvable-plan-vs-executable-plan/">補助金申請で重要なのは「制度理解」と「実行できる計画」</a></li>
+      <li><a href="/blog/business-succession-ma-subsidy-apply-before-contract/">事業承継・M&A補助金は案件のタイミングが壁</a></li>
+      <li><a href="/blog/subsidy-financing-before-investment/">補助金を使う投資は、採択前から資金繰りを考える</a></li>
+    </ul>
     <h2>ご相談の前に分かるとよいこと</h2>
     <ul class="checklist"><li>始めたい事業の内容と想定しているお客様</li><li>商品・サービスの価格</li><li>設備や広告などにかかる概算金額</li><li>事業を始めたい時期</li><li>現在の事業との関係</li><li>想定している売上と、その根拠</li></ul>
-    <div class="notice">30分の無料診断では、計画の内容を伺い、使えそうな制度と、申請前にもう少し考える必要がある点をお伝えします。</div>
+    <div class="notice">すべてそろっていなくても大丈夫です。30分の無料診断で構想を伺い、使えそうな制度と、申請前にもう少し考える必要がある点をお伝えします。</div>
   </div></section>
-  <section class="section alt"><div class="container cta"><div><h2>新規事業の構想をお聞かせください</h2><p>30分のWeb面談で、使えそうな制度、必要な資金、次に確認することをお話しします。</p></div><a class="button" href="/consultation/">無料Web診断を申し込む</a></div></section>
+
+  <section class="section">
+    <div class="container faq-wrap">
+      <div class="section-head"><p class="eyebrow">よくある質問</p><h2>新規事業の補助金について</h2></div>
+      <div class="faq-list">
+        {faqs.map((f, i) => (
+          <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt"><div class="container cta"><div><h2>構想の段階から、ご相談ください</h2><p>30分のWeb面談で、使えそうな制度、必要な資金、次に確認することを一緒に整理します。</p></div><a class="button" href="/consultation/">無料Web診断を申し込む</a></div></section>
 </BaseLayout>
