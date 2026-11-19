@@ -41,7 +41,7 @@ h3{font-size:22px;margin-bottom:10px}
 .hero-card ul{margin:0;padding-left:1.3em}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
 .proof-strip{background:var(--navy);color:#fff;padding:26px 0}
-.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
 .proof-item{padding:8px 28px;border-right:1px solid rgba(255,255,255,.2)}
 .proof-item:first-child{padding-left:0}
 .proof-item:last-child{border-right:0}
