@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-11-16T21:10:32.777Z",
+  "verifiedAt": "2026-11-19T23:10:07.936Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "88271c6627c2e4bd5e2aa498299155b6867107c5",
+  "commit": "92c11f9cd4a060f97962ee037d803a59a59da76d",
   "results": [
     {
-      "slug": "large-scale-growth-investment-subsidy-6th-round-results",
-      "url": "https://hojokin.ciza.co.jp/blog/large-scale-growth-investment-subsidy-6th-round-results",
+      "slug": "subsidy-construction-cost-surge-investment-plan",
+      "url": "https://hojokin.ciza.co.jp/blog/subsidy-construction-cost-surge-investment-plan",
       "status": 200,
       "checks": {
         "articleHttp200": true,
