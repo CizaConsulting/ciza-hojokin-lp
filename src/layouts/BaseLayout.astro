@@ -31,7 +31,21 @@ const structuredData = {
       email: 'info@ciza.co.jp',
       telephone: '06-6476-9777',
       foundingDate: '2012-10-17',
-      description: '補助金、財務、融資、事業計画、経営管理を横断して中小企業の投資と成長を支援するコンサルティング会社です。',
+      description: '補助金、財務、融資、事業計画、経営管理を横断して、中小企業・中堅企業の投資と成長を支援するコンサルティング会社です。補助金の採択支援は累計300件超、ご支援先の補助金獲得額は累計20億円超。経営革新等認定支援機関です。',
+      areaServed: { '@type': 'Country', name: '日本' },
+      hasCredential: {
+        '@type': 'EducationalOccupationalCredential',
+        name: '経営革新等認定支援機関',
+        credentialCategory: '中小企業等経営強化法に基づく認定',
+        identifier: '104727001912',
+        recognizedBy: { '@type': 'GovernmentOrganization', name: '中小企業庁' },
+        url: 'https://www.ciza.co.jp/business/business03.html'
+      },
+      knowsAbout: [
+        '補助金申請支援', '大規模成長投資補助金', '中小企業成長加速化補助金', '新事業進出・ものづくり商業サービス補助金',
+        '中小企業省力化投資補助金', '事業再構築補助金', '事業承継・M&A補助金', '早期経営改善計画策定支援',
+        '事業計画策定', '資金調達', '融資', '経営管理', '中堅企業支援'
+      ],
       sameAs: [
         'https://www.ciza.co.jp/',
         'https://www.youtube.com/@takuma_kawahara',
@@ -63,8 +77,10 @@ const structuredData = {
       knowsAbout: [
         '補助金', 'ものづくり補助金', '成長加速化補助金', '事業再構築補助金',
         '省力化投資補助金', '事業承継・M&A補助金', '小規模事業者持続化補助金',
-        'IT導入補助金', '財務', '資金調達', '事業計画', '経営管理', '中小企業支援'
-      ]
+        'IT導入補助金', '大規模成長投資補助金', '財務', '資金調達', '事業計画', '経営管理',
+        '中小企業支援', '中堅企業支援', '補助金審査'
+      ],
+      description: 'ものづくり補助金の元審査員。商工中金を経て、コンサルティングファームで東証一部上場企業の経営管理改革・原価管理改革に従事。2012年に株式会社シザコンサルティングを設立。'
     },
     {
       '@type': 'WebSite',
@@ -122,6 +138,7 @@ const structuredData = {
         <nav class="nav" aria-label="メインナビゲーション">
           <a href="/equipment-investment/">設備投資</a>
           <a href="/new-business/">新規事業</a>
+          <a href="/mid-sized-companies/">中堅企業</a>
           <a href="/blog/">記事</a>
           <a href="/about/">運営会社</a>
           <a href="/consultation/" class="button small">30分無料Web診断</a>
@@ -135,6 +152,7 @@ const structuredData = {
           <strong>株式会社シザコンサルティング</strong><br />
           補助金・財務・資金調達・経営管理を横断して支援
           <div class="footer-links">
+            <a href="/mid-sized-companies/">中堅企業の補助金活用</a>
             <a href="/blog/">記事一覧</a>
             <a href="/about/">運営会社</a>
             <a href="/author/takuma-kawahara/">代表者・著者</a>

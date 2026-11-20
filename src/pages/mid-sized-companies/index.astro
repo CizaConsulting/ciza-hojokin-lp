@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const faqs = [
+  { q: '中堅企業でも、中小企業向けの補助金は使えますか。', a: '中小企業者に当たらなければ、中小企業向けの補助金は使えません。ただし、中小企業者かどうかは「資本金」と「従業員数」のどちらか一方を満たせば該当します。たとえば製造業なら、従業員が300人を超えていても資本金が3億円以下なら中小企業者です。まず自社がどの区分に当たるかを確認します。' },
+  { q: '大手企業のグループ会社でも使えますか。', a: '大企業から一定以上の出資を受けている会社は「みなし大企業」として、中小・中堅向けの多くの補助金で対象外になります。出資比率や役員の兼任の状況によって判断が分かれるため、資本関係を伺ったうえで確認します。グループ会社のご支援実績もあります。' },
+  { q: '大規模成長投資補助金は、いくらの投資から対象ですか。', a: '直近の公募では、投資額20億円以上（100億宣言企業は15億円以上）が条件でした。補助率は3分の1以下、補助上限は50億円です。金額や要件は公募回ごとに変わるため、検討する公募回の要領で確認します。' },
+  { q: '賃上げ要件を達成できないと、どうなりますか。', a: '大規模成長投資補助金では、補助事業の終了後3年間の賃上げが要件で、未達成の場合は未達成の度合いに応じて返還を求められます。投資の回収計画と賃上げの原資を、申請前に一体で確認しておくことが大切です。' },
+  { q: '経営企画部や財務部と一緒に進められますか。', a: 'はい。中堅企業では、経営企画・財務・製造・営業など複数の部門が関わります。各部門の担当者と打ち合わせを重ね、事業計画、投資計画、資金調達、賃上げ計画をひとつの筋道にまとめていきます。' },
+  { q: '申請書の作成を任せられますか。', a: '補助金の申請書そのものを外部のコンサルタントが作成することは、制度上認められていません。申請のもとになる事業計画づくりを、経営陣や担当部門と一緒に、しっかり伴走支援します。' },
+];
+
+const faqSchema = {
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const serviceSchema = {
+  '@type': 'Service',
+  name: '中堅企業の補助金活用・大型投資の資金計画支援',
+  serviceType: '補助金申請支援・事業計画策定支援',
+  provider: { '@id': 'https://hojokin.ciza.co.jp/#organization' },
+  areaServed: { '@type': 'Country', name: '日本' },
+  audience: { '@type': 'BusinessAudience', audienceType: '中堅企業・売上高100億円を目指す中小企業' },
+  description: '中堅企業の工場・拠点新設や大型設備投資について、大規模成長投資補助金などの補助金、税制、融資を組み合わせた資金計画と、事業計画づくりを伴走支援します。',
+};
+---
+<BaseLayout title="中堅企業の補助金活用｜大規模成長投資補助金と大型投資の資金計画" description="中堅企業（従業員2,000人以下）の工場新設や大型設備投資に使える補助金を、対象区分・投資額・賃上げ要件・資金計画の観点で整理。大手企業のグループ会社や上場企業の支援実績もあります。" schema={[faqSchema, serviceSchema]}>
+  <div class="page-hero"><div class="container prose"><p class="eyebrow">中堅企業・売上高100億円を目指す企業へ</p><h1>中堅企業の大型投資に、補助金・税制・融資を組み合わせる</h1><p class="lead">工場や拠点の新設、大型の設備投資を検討している中堅企業の経営陣と、経営企画・財務のご担当者向けのページです。使える制度の見極めから、投資と資金調達、賃上げまで一体の計画づくりを支援します。</p></div></div>
+
+  <section class="section"><div class="container prose">
+    <div class="direct-answer">
+      <p class="direct-answer-label">要点</p>
+      <p>中堅企業（常時使用する従業員2,000人以下で、中小企業者に当たらない会社）の大型投資で中心になる補助金は、大規模成長投資補助金です。直近の公募では投資額20億円以上、補助上限50億円・補助率3分の1以下でした。中小企業者に当たる会社なら、中小企業成長加速化補助金も候補になります。どちらも、投資の回収、資金調達、補助事業後の賃上げまで一体で説明できるかが問われます。</p>
+    </div>
+
+    <h2>中堅企業とは</h2>
+    <p>2024年の産業競争力強化法の改正で、「中堅企業」が法律上の区分になりました。補助金の対象になるかどうかは、この区分で決まります。</p>
+    <div class="table-wrap"><table>
+      <tr><th>区分</th><td>おおよその基準</td></tr>
+      <tr><th>中小企業者</th><td>業種ごとに資本金または従業員数のどちらかが基準以下（製造業なら資本金3億円以下または従業員300人以下）</td></tr>
+      <tr><th>中堅企業</th><td>常時使用する従業員2,000人以下で、中小企業者に当たらない会社</td></tr>
+      <tr><th>特定中堅企業</th><td>中堅企業のうち、賃金水準や雇用の伸びなどの要件を満たす会社。設備投資やM&Aに関する税制措置などの対象になります</td></tr>
+      <tr><th>大企業</th><td>上記に当たらない会社。大企業から一定以上の出資を受けた会社は「みなし大企業」として扱われます</td></tr>
+    </table></div>
+    <p class="small-note">※ 出典：経済産業省「<a href="https://www.meti.go.jp/policy/economy/chuuken/tokutei-chuuken.html" target="_blank" rel="noopener noreferrer">特定中堅企業者</a>」など。個別の補助金では、別の基準が設けられている場合があります。</p>
+  </div></section>
+
+  <section class="section alt"><div class="container prose">
+    <h2>中堅企業の大型投資で検討する主な補助金</h2>
+    <div class="table-wrap"><table>
+      <tr><th>制度</th><td>対象と規模（直近の公募）</td></tr>
+      <tr><th>大規模成長投資補助金</th><td>従業員2,000人以下の中堅・中小企業（単体）。工場・倉庫・拠点の新設や増築、省力化設備、システム構築など。投資額20億円以上（100億宣言企業は15億円以上）、補助上限50億円・補助率3分の1以下。補助事業後3年間の賃上げが要件</td></tr>
+      <tr><th>中小企業成長加速化補助金</th><td>売上高10億円以上100億円未満の中小企業者。「100億宣言」が前提。投資額1億円以上、補助上限5億円・補助率2分の1</td></tr>
+      <tr><th>税制・融資</th><td>特定中堅企業向けの税制措置や、賃上げ・設備投資に関する税制、政府系・民間金融機関の融資。補助金の対象外の経費や、入金までのつなぎ資金を含めて組み合わせます</td></tr>
+    </table></div>
+    <p class="small-note">※ 金額・要件は公募回ごとに変わります。申請を検討する公募回の公募要領で必ず確認します（2026年11月時点の情報）。</p>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="section-head"><p class="eyebrow">審査と実行で問われること</p><h2>大型投資の計画で、ひとつの筋道にまとめる4つのこと</h2><p class="lead">審査では、計画どおりに実行できる会社かどうかが見られます。採択後に計画を大きく変えることはできません。</p></div>
+    <div class="grid-2">
+      <div class="card"><h3>投資の回収</h3><p>投資額の下限に合わせて計画を膨らませるのではなく、売上・利益・省力化の効果から、投資を回収できるかを先に確かめます。</p></div>
+      <div class="card"><h3>資金調達</h3><p>補助金は後払いです。自己資金、借入、補助金の入金までのつなぎ資金を、金融機関への説明も含めて組み立てます。</p></div>
+      <div class="card"><h3>賃上げの原資</h3><p>補助事業後の賃上げを続けられるかは、投資で生まれる付加価値次第です。人件費の計画と収益計画をつなげて確認します。</p></div>
+      <div class="card"><h3>社内の体制</h3><p>経営陣、経営企画、財務、製造、営業がそれぞれの数字を持ち寄ります。部門をまたいだ計画を、ひとつの説明にまとめます。</p></div>
+    </div>
+  </div></section>
+
+  <section class="section alt"><div class="container">
+    <div class="section-head"><p class="eyebrow">実績と体制</p><h2>中堅企業・上場企業の支援経験</h2></div>
+    <div class="grid-2">
+      <div class="card"><h3>補助金の実績</h3><ul class="checklist">
+        <li>補助金の採択支援は累計300件超、ご支援先の補助金獲得額は累計20億円超</li>
+        <li>事業再構築補助金で、補助金額5億円の案件を支援</li>
+        <li>中小企業成長加速化補助金（倍率6.1倍）の採択を支援</li>
+        <li>大手企業や大手企業のグループ会社、上場廃止した企業、再上場した企業の補助金を支援</li>
+      </ul></div>
+      <div class="card"><h3>経営コンサルティングの経験</h3><ul class="checklist">
+        <li>代表はコンサルティングファームで、東証一部上場企業の経営管理改革・原価管理改革・収益管理改革を担当</li>
+        <li>独立後も、上場企業・中堅企業の社内研修を担当</li>
+        <li>ものづくり補助金の審査員を約2年間担当</li>
+        <li>経営革新等認定支援機関（ID：104727001912、平成29年認定）</li>
+      </ul></div>
+    </div>
+    <p class="small-note">チームには、コンサルティングファーム出身者、元銀行員、ベンチャー企業でバックオフィスを率いてきた者がいます。認定支援機関の認定通知書は<a href="https://www.ciza.co.jp/business/business03.html" target="_blank" rel="noopener noreferrer">当社ウェブサイト</a>に掲載しています。※ 企業の特定を避けるため、社名は伏せています。</p>
+  </div></section>
+
+  <section class="section"><div class="container prose">
+    <h2>投資のあとの経営管理まで</h2>
+    <p>大型投資は、採択後の数年間が本番です。投資の効果を月次で確かめ、賃上げの原資を確保し続けるには、事業別・拠点別の採算や予実を経営陣が同じ数字で見られる仕組みが必要になります。投資後の経営管理の仕組みづくりは、<a href="https://keieikanri.ciza.co.jp/" target="_blank" rel="noopener noreferrer">経営管理OS</a>でご支援しています。</p>
+    <h2>あわせて読みたい</h2>
+    <ul class="checklist">
+      <li><a href="/blog/large-growth-subsidy-investment-financing-wage-increase/">大規模成長投資補助金の投資額と資金調達｜借入・自己資金・賃上げ計画の考え方</a></li>
+      <li><a href="/blog/large-scale-growth-investment-subsidy-6th-round-results/">大規模成長投資補助金 6次公募の採択結果公表</a></li>
+      <li><a href="/blog/growth-acceleration-subsidy-overview-requirements/">中小企業成長加速化補助金（100億宣言）とは</a></li>
+      <li><a href="/blog/growth-subsidy-wage-regional-impact-small-firms/">成長加速化補助金の賃上げ・波及効果</a></li>
+      <li><a href="/blog/subsidy-fix-plan-before-applying/">補助金は「採択後に変えられない」前提で申請する</a></li>
+    </ul>
+  </div></section>
+
+  <section class="section alt">
+    <div class="container faq-wrap">
+      <div class="section-head"><p class="eyebrow">よくある質問</p><h2>中堅企業の補助金について</h2></div>
+      <div class="faq-list">
+        {faqs.map((f, i) => (
+          <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section"><div class="container cta"><div><h2>投資計画が固まる前から、ご相談ください</h2><p>30分のWeb面談で、自社がどの区分に当たるか、使えそうな制度、計画づくりの進め方を一緒に確認します。</p></div><a class="button" href="/consultation/">無料Web診断を申し込む</a></div></section>
+</BaseLayout>
