@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-11-19T23:10:07.936Z",
+  "verifiedAt": "2026-11-23T23:09:01.607Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "92c11f9cd4a060f97962ee037d803a59a59da76d",
+  "commit": "586dd8d7934c0492772dcbd5a39fe29f36533501",
   "results": [
     {
-      "slug": "subsidy-construction-cost-surge-investment-plan",
-      "url": "https://hojokin.ciza.co.jp/blog/subsidy-construction-cost-surge-investment-plan",
+      "slug": "subsidy-equipment-lease-vs-purchase",
+      "url": "https://hojokin.ciza.co.jp/blog/subsidy-equipment-lease-vs-purchase",
       "status": 200,
       "checks": {
         "articleHttp200": true,
