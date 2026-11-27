@@ -1,12 +1,27 @@
 {
   "version": 1,
-  "verifiedAt": "2026-11-26T23:08:30.684Z",
+  "verifiedAt": "2026-11-27T00:13:32.421Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "912044824839d0e016fbe8c47ab03b06bb3f7478",
+  "commit": "323e3c249856927d1e9c34fcfff4ad12ab59ff27",
   "results": [
     {
       "slug": "labor-saving-investment-subsidy-general-9th-round-schedule",
       "url": "https://hojokin.ciza.co.jp/blog/labor-saving-investment-subsidy-general-9th-round-schedule",
+      "status": 200,
+      "checks": {
+        "articleHttp200": true,
+        "listedOnBlogIndex": true,
+        "inSitemap": true,
+        "canonicalMatches": true,
+        "noIndexAbsent": true,
+        "robotsTxtAllows": true,
+        "noDuplicateUrl": true
+      },
+      "ok": true
+    },
+    {
+      "slug": "subsidy-labor-shortage-wage-funding",
+      "url": "https://hojokin.ciza.co.jp/blog/subsidy-labor-shortage-wage-funding",
       "status": 200,
       "checks": {
         "articleHttp200": true,
