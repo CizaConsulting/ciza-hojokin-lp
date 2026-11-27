@@ -1,12 +1,12 @@
 {
   "version": 1,
-  "verifiedAt": "2026-11-25T00:14:49.029Z",
+  "verifiedAt": "2026-11-26T23:08:30.684Z",
   "siteBaseUrl": "https://hojokin.ciza.co.jp",
-  "commit": "9c308a880bbcf7105d7238adf30c23e8d56926bc",
+  "commit": "912044824839d0e016fbe8c47ab03b06bb3f7478",
   "results": [
     {
-      "slug": "subsidy-equipment-lease-vs-purchase",
-      "url": "https://hojokin.ciza.co.jp/blog/subsidy-equipment-lease-vs-purchase",
+      "slug": "labor-saving-investment-subsidy-general-9th-round-schedule",
+      "url": "https://hojokin.ciza.co.jp/blog/labor-saving-investment-subsidy-general-9th-round-schedule",
       "status": 200,
       "checks": {
         "articleHttp200": true,
